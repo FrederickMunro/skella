@@ -1,0 +1,28 @@
+#home-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  height: 100%;
+}
+
+#home-logo {
+  height: 100%;
+}
+
+@media screen and (min-width: var(--phone-portrait)) {
+}
+
+@media screen and (min-width: var(--phone-landscape)) {
+}
+
+@media screen and (min-width: var(--tablet-portrait)) {
+}
+
+@media screen and (min-width: var(--tablet-landscape)) {
+}
+
+@media screen and (min-width: var(--monitor)) {
+}
+
+@media screen and (min-width: var(--large-monitor)) {
+}
