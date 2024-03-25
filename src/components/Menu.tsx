@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './Menu.css';
 
 import HamburgerMenu from './HamburgerMenu';
+import MenuItem from './MenuItem';
 
 const Menu = () => {
 
@@ -17,6 +18,7 @@ const Menu = () => {
       <HamburgerMenu isopen={isOpen} handlemenuclick={handleMenuClick} />
       <div id="menu" className={isOpen ? "menu-visible" : "menu-invisible"}>
       </div>
+      <MenuItem />
     </>
   );
 }

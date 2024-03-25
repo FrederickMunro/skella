@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import './HamburgerMenu.css';
 
 import Hamburger from '../assets/burger-menu.svg'

@@ -1,10 +1,12 @@
-interface Props {
-  title: string;
-}
+// interface Props {
+//   title: string;
+// }
 
-const MenuItem = ({ title }: Props) => {
+const MenuItem = () => {
   return(
     <>
     </>
   );
 }
+
+export default MenuItem;
