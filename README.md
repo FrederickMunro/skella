@@ -16,8 +16,7 @@ To get started with the Skella website locally, follow these instructions:
 
 To run the website locally in development mode, use the following command:
   `npm run dev`
-
-This will start a development server, and you can access the website at `http://localhost:3000`.
+This will start a development server.
 
 ### Deployment
 
