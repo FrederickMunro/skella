@@ -1,17 +1,21 @@
-@media screen and (min-width: var(--phone-portrait)) {
+.menu-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: max(3rem, min(5.8rem, 10vw));
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+  padding: 0px;
+  margin: 10px;
 }
 
-@media screen and (min-width: var(--phone-landscape)) {
+@media only screen and (max-width: 767px) {
 }
 
-@media screen and (min-width: var(--tablet-portrait)) {
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
 }
 
-@media screen and (min-width: var(--tablet-landscape)) {
-}
-
-@media screen and (min-width: var(--monitor)) {
-}
-
-@media screen and (min-width: var(--large-monitor)) {
+@media only screen and (min-width: 1200px) {
 }

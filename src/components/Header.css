@@ -1,26 +1,17 @@
 #header {
-  height: 50px;
-  padding: 10px 5px 10px 5px;
+  height: 5rem;
+  padding: 1rem 0.5rem 1rem 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightgrey;
+  background-color: var(--background-color);
 }
 
-@media screen and (min-width: var(--phone-portrait)) {
+@media only screen and (max-width: 767px) {
 }
 
-@media screen and (min-width: var(--phone-landscape)) {
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
 }
 
-@media screen and (min-width: var(--tablet-portrait)) {
-}
-
-@media screen and (min-width: var(--tablet-landscape)) {
-}
-
-@media screen and (min-width: var(--monitor)) {
-}
-
-@media screen and (min-width: var(--large-monitor)) {
+@media only screen and (min-width: 1200px) {
 }

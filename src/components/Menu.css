@@ -1,15 +1,39 @@
-@media screen and (max-width: 768px) {
+#menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+#menu-nav {
+  display: flex;
+}
+
+@media only screen and (max-width: 767px) {
   #menu {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     background-color: var(--background-color);
     position: fixed;
-    height: calc(100vh - 70px);
-    width: 100%;
-    top: 70px;
+    height: calc(100vh - 7rem);
+    width: 100vw;
+    top: 7rem;
     transition: left 0.5s ease;
   }
 
+  #menu-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-grow: 1;
+    width: 80%;
+  }
+
+  #contact-socials {
+    height: 30%;
+  }
+
   .menu-invisible {
-    left: 100%;
+    left: 100vw;
   }
 
   .menu-visible {
@@ -17,26 +41,8 @@
   }
 }
 
-@media screen and (min-width: var(--tablet-portrait)) {
-  #menu {
-    
-  }
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
 }
 
-@media screen and (min-width: var(--tablet-landscape)) {
-  #menu {
-    
-  }
-}
-
-@media screen and (min-width: var(--monitor)) {
-  #menu {
-    
-  }
-}
-
-@media screen and (min-width: var(--large-monitor)) {
-  #menu {
-    
-  }
+@media only screen and (min-width: 1200px) {
 }
