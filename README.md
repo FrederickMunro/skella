@@ -1,6 +1,6 @@
 # Skella Website
 
-This repository contains the codebase for the Skella website. Skella is a web application built for [describe purpose here]. 
+This repository contains the codebase for the Skella website.
 
 ## Getting Started
 
