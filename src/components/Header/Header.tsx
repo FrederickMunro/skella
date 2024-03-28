@@ -5,9 +5,11 @@ import HomeLogo from "./HomeLogo";
 
 const Header = () => {
   return(
-    <div id='header'>
-      <HomeLogo />
-      <Menu />
+    <div className='header'>
+      <div className='header-content'>
+        <HomeLogo />
+        <Menu />
+      </div>
     </div>
   );
 }

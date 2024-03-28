@@ -1,28 +1,24 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 
 import Home from './components/Home';
-import Header from './components/Header';
-import Pools from './components/Pools';
-import Excavation from './components/Excavation';
+import Header from './components/Header/Header';
+import Excavation from './components/Excavation/Excavation';
+import Footer from './components/Footer';
+import Pools from './components/Pools/Pools';
 
 function App() {
 
   return (
     <>
-    <Router>
       <Header />
       <Routes>
-        <Route
-          path="/skella/*"
-          element={<Navigate to='/' />}
-          />
         <Route path='/' element={ <Home /> } />
-        <Route path='/pools' element={ <Pools /> } />
         <Route path='/excavation' element={ <Excavation /> } />
+        <Route path='/pools' element={ <Pools /> } />
       </Routes>
-    </Router>
+      <Footer />
     </>
   );
 }

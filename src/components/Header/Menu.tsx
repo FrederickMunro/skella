@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import './Menu.css';
+import './Header.css';
 
 import HamburgerMenu from './HamburgerMenu';
 import MenuItem from './MenuItem';
 import ContactButton from './ContactButton';
+import SocialMedia from '../SocialMedia';
 
 const Menu = () => {
 
@@ -15,23 +16,25 @@ const Menu = () => {
   }
 
   const menuTitles = [
-    "Pools",
-    "Excavation",
-    "Bid",
+    'Home',
+    'Pools',
+    'Excavation',
+    'Estimate',
   ]
 
   return(
     <>
       <HamburgerMenu isopen={isOpen} handlemenuclick={handleMenuClick} />
-      <div id="menu" className={isOpen ? "menu-visible" : "menu-invisible"}>
-        <nav id="menu-nav">
+      <div className={`menu ${isOpen ? 'menu-visible' : 'menu-invisible'}`}>
+        <nav className='menu-nav'>
           {
             menuTitles.map((item, index) => {
               return <MenuItem key={index} title={item.toUpperCase()} handlemenuclick={handleMenuClick} />
             })
           }
         </nav>
-        <div id='contact-socials'>
+        <div className='contact-socials'>
+          <SocialMedia fgColor='black' bgColor='transparent'/>
           <ContactButton />
         </div>
       </div>
