@@ -10,7 +10,7 @@ const Machines = () => {
 
   const machines = [
     {
-      title: '39\" Mini Excavator',
+      title: '39\" Mini Shovel',
       image: Shovel39,
       text: 'Do you need to access challenging areas? Whether hindered by obstacles ' +
             'like fences or confined spaces, this machine offers a solution. With a ' +
@@ -19,7 +19,7 @@ const Machines = () => {
             'locations for this equipment.',
     },
     {
-      title: '80\" Mini Excavator',
+      title: '80\" Mini Shovel',
       image: Shovel80,
       text: 'For your daily excavation requirements, this machine provides an ' +
             'effective solution. Its versatility enables it to tackle a wide range ' +
@@ -30,7 +30,7 @@ const Machines = () => {
             'to meet the demands.',
     },
     {
-      title: 'Hydraulic Hammer',
+      title: 'Jack Hammer',
       image: Hammer,
       text: 'For concrete breaking tasks of any size, this tool is ideal. No project ' +
       'is beyond its capabilities, whether large or small. Let us handle the breaking ' +

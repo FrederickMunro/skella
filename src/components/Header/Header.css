@@ -20,7 +20,7 @@
   .hamburger-menu-button {
     background: none;
     height: max(4rem, min(7vw, 5rem));
-    height: max(4rem, min(7vw, 5rem));
+    width: max(4rem, min(7vw, 5rem));
     cursor: pointer;
     border: none;
   }
