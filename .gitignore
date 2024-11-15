@@ -1,0 +1,19 @@
+# Root-level Ignored Files
+.vscode/
+
+# Backend-specific Ignores
+backend/.gradle/
+backend/.idea/
+backend/bin/
+backend/build/
+backend/build/tmp/
+
+# Frontend-specific Ignores
+frontend/node_modules/
+frontend/.idea/
+frontend/.vscode/
+frontend/.vite
+frontend/.env
+frontend/dist/
+frontend/.vite/
+frontend/*.tsbuildinfo

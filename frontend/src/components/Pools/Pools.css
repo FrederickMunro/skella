@@ -1,0 +1,332 @@
+.pools-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pools-add-button {
+  width: 30rem;
+  height: 3rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.pools-add-pool-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 767px) {
+  .pools-pool-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .pools-pool-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pools-pool-info-container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25rem;
+    flex-grow: 1;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .pools-title {
+    font-size: 3rem;
+    margin: 1rem 0 1rem 0;
+    font-weight: bolder;
+  }
+
+  .pools-container-title {
+    font-size: 30px;
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  .pools-container-desc {
+    font-size: 20px;
+  }
+
+  .pools-container-sizes {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .pools-container-depths {
+    font-size: 20px;
+  }
+
+  .pools-button-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .pools-container-delete-button {
+    position: relative;
+    align-self: flex-end;
+  }
+
+  .home-pool-card {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+  }
+  
+  .home-pools-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .home-pools-title {
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .home-pools-link {
+    text-decoration: underline;
+    font-size: 15px;
+    color: black;
+  }
+
+  .home-pools-carousel {
+    position: relative;
+    padding: 0 40px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .pools-scroll {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .pool-card {
+    flex: 0 0 auto;
+    width: 250px; /* Match the itemWidth in the component */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  /* Hide scrollbar */
+  .pools-scroll {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
+  }
+  
+  .pools-scroll::-webkit-scrollbar {
+      display: none;  /* Chrome, Safari and Opera */
+  }
+
+  .nav-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .nav-button.prev {
+    left: 0;
+  }
+
+  .nav-button.next {
+      right: 0;
+  }
+
+  /* Add padding to first and last items */
+  .pools-scroll > :first-child {
+      margin-left: 0;
+  }
+
+  .pools-scroll > :last-child {
+      margin-right: 0;
+  }
+
+  .pools-pool-image {
+    max-width: 200px;
+  }
+
+  .pools-container-lists {
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto;
+    width: 100%;
+  }
+
+  .pools-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pools-list-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .pools-list-list > li {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      z-index: 1001;
+  }
+
+  .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.5rem;
+      margin: 0;
+  }
+
+  .modal-close {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 5px;
+  }
+
+  .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .modal-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .modal-form label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .modal-form button[type="submit"] {
+    background: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .modal-form button[type="submit"]:hover {
+    background: #45a049;
+  }
+
+  .modal-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 4px;
+    resize: vertical;  /* Allows vertical resizing only */
+    min-height: 100px;
+    font-family: inherit;  /* Uses the same font as the rest of your form */
+    line-height: 1.5;  /* Improves readability */
+  }
+
+  .modal-form textarea:focus {
+      outline: none;
+      border-color: #4CAF50;  /* Optional: highlights border when focused */
+      box-shadow: 0 0 0 2px rgba(74, 175, 80, 0.2);  /* Optional: adds subtle focus shadow */
+  }
+
+  .edit-form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .edit-form-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .edit-form-buttons button:first-child {
+    background: #4CAF50;
+    color: white;
+  }
+
+  .edit-form-buttons button:last-child {
+    background: #f44336;
+    color: white;
+  }
+
+  .edit-form-buttons button:hover {
+    opacity: 0.9;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}

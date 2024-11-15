@@ -1,0 +1,14 @@
+.page-container {
+  width: 100vw;
+  flex-grow: 1;
+  display: flex;
+}
+
+@media only screen and (max-width: 767px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+}
+
+@media only screen and (min-width: 1200px) {
+}

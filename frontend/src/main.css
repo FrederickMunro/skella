@@ -1,0 +1,60 @@
+:root {
+  font-size: 62.5%; /* Sets 1rem = 10px (16px * 0.625) */
+  background-color: white;
+
+  /* Variables */
+  --main-color: grey;
+  --secondary-color: black;
+  --skella-blue: blue;
+  --skella-grey: grey;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-color {
+  color: var(--main-color);
+}
+
+.main-color-background {
+  background-color: var(--main-color);
+}
+
+.secondary-color {
+  color: var(--secondary-color);
+}
+
+.secondary-color-background {
+  background-color: var(--secondary-color);
+}
+
+.skella-blue {
+  color: var(--skella-blue);
+}
+
+.skella-blue-background {
+  background-color: var(--skella-blue);
+}
+
+.skella-grey {
+  color: var(--skella-grey);
+}
+
+.skella-grey-background {
+  background-color: var(--skella-grey);
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
