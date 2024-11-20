@@ -13,6 +13,7 @@ import Excavation from "./components/Excavation/Excavation";
 import Blog from "./components/Blog/Blog";
 import Contact from "./components/Contact/Contact";
 import Experience from "./components/Experience/Experience";
+import Footer from "./components/Footer/Footer";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Home />
+        <Footer />
       </>
     )
   },
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Portfolio />
+        <Footer />
       </>
     )
   },
@@ -39,6 +42,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Pools />
+        <Footer />
       </>
     )
   },
@@ -48,6 +52,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Amenagement />
+        <Footer />
       </>
     )
   },
@@ -57,6 +62,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Excavation />
+        <Footer />
       </>
     )
   },
@@ -66,6 +72,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Experience />
+        <Footer />
       </>
     )
   },
@@ -75,6 +82,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Blog />
+        <Footer />
       </>
     )
   },
@@ -84,6 +92,7 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Contact />
+        <Footer />
       </>
     )
   }

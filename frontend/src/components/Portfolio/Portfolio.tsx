@@ -1,8 +1,12 @@
+import TitleDesc from "../TitleDesc";
+import ContentContainer from "../ContentContainer";
 
 
 const Portfolio = () => {
   return(
-    <p>Portfolio</p>
+    <ContentContainer>
+      <TitleDesc tag='portfolio'/>
+    </ContentContainer>
   )
 }
 

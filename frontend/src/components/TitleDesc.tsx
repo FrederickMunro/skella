@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import EditableComponent from './EditableComponent';
+import EditableComponent from './Edit/EditableComponent';
+import { Item } from './Edit/EditModal';
 
 interface PageDetail {
   id: string;
@@ -26,6 +27,23 @@ const TitleDesc = ({ tag }: Props) => {
     description: ''
   });
 
+  const items: Item[] = [
+    {
+      label: 'Title',
+      type: 'input',
+      placeholder: '',
+      value: pageDetail.title,
+      setValue: (title: string) => setPageDetail(prev => ({ ...prev, title })),
+    },
+    {
+      label: 'Description',
+      type: 'textarea',
+      placeholder: '',
+      value: pageDetail.description,
+      setValue: (description: string) => setPageDetail(prev => ({ ...prev, description })),
+    },
+  ]
+
   const fetchPageDetail = async () => {
     try {
       const res = await axios.get<PageDetail>(`${apiUrl}/getpagedetails/${tag}`);
@@ -36,16 +54,16 @@ const TitleDesc = ({ tag }: Props) => {
     }
   }
 
-  const handleEdit = () => {
-    return null;
-  }
-
   useEffect(() => {
     fetchPageDetail();
   }, [])
 
+  const submit = () => {
+    return;
+  }
+
   return(
-    <EditableComponent handleEdit={handleEdit}>
+    <EditableComponent items={items} submit={submit}>
       <Helmet>
         <title>{pageDetail.title}</title>
         <meta name='description' content={pageDetail.description} />

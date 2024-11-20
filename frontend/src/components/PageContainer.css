@@ -4,6 +4,16 @@
   display: flex;
 }
 
+.content-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  font-family: 'Roboto', sans-serif;
+}
+
 .editable-container {
   position: relative; /* Required for positioning the overlay */
   transition: all 0.3s ease; /* Smooth transition for dimming */
@@ -45,7 +55,7 @@
 
 /* Show the overlay text when hovered */
 .editable-container.hovered .editable-container-edit-overlay {
-opacity: 1; /* Makes text visible */
+  opacity: 1; /* Makes text visible */
 }
 
 @media only screen and (max-width: 767px) {

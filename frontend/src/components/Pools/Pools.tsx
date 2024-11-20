@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Pools.css';
 import PoolContainer from './PoolContainer';
 import TitleDesc from '../TitleDesc';
+import ContentContainer from '../ContentContainer';
 
 interface Pool {
     id: string;
@@ -184,7 +185,7 @@ const Pools = () => {
     }
 
     return (
-        <div className='pools-container'>
+        <ContentContainer>
             <TitleDesc tag='piscines' />
             <div className='pools-pool-container'>
             {
@@ -356,7 +357,7 @@ const Pools = () => {
                     </div>
                 )
             }
-        </div>
+        </ContentContainer>
     )
 }
 
