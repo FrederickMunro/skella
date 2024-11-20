@@ -10,10 +10,10 @@ const HomeVideo = () => {
       </video>
       <div className='home-video-text-container'>
         <h1 className='home-video-title'>GROUPE SKELLA</h1>
-        <h2 className='home-video-subtitle'>Fiberglass Pool Services & Excavation</h2>
+        <h2 className='home-video-subtitle'>Piscines de rêve et aménagements paysagers haut de gamme à Montréal</h2>
         <div className='home-date-container'>
           <div className='home-date-line' />
-          <p className='home-date-text'>Since 1997</p>
+          <p className='home-date-text'>Depuis 1997</p>
         </div>
       </div>
     </div>

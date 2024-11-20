@@ -4,6 +4,50 @@
   display: flex;
 }
 
+.editable-container {
+  position: relative; /* Required for positioning the overlay */
+  transition: all 0.3s ease; /* Smooth transition for dimming */
+  background-color: white; /* Default background */
+  overflow: hidden; /* Ensures the overlay stays within the container */
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* Hover effect for dimming */
+.editable-container.hovered::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dimming effect */
+  z-index: 1; /* Ensures it appears above content but below text */
+  pointer-events: none; /* Allows interaction with content */
+}
+
+/* Overlay text for editing */
+.editable-container-edit-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  z-index: 2; /* Places text above the dimming overlay */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); /* Improves readability */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth fade-in */
+  font-size: 5rem;
+}
+
+/* Show the overlay text when hovered */
+.editable-container.hovered .editable-container-edit-overlay {
+opacity: 1; /* Makes text visible */
+}
+
 @media only screen and (max-width: 767px) {
 }
 

@@ -5,32 +5,67 @@ import './Header.css';
 import Hamburger from './Hamburger';
 import MenuItem from './MenuItem';
 
-const Menu = () => {
-  const [menuState, setMenuState] = useState('header-menu-closed');
+interface Props {
+  menustate: string;
+  menuclick: Function;
+}
 
-  const handleMenuClick = () => {
-    if (menuState === 'header-menu-closed') {
-      setMenuState('header-menu-open');
-    } else {
-      setMenuState('header-menu-closed');
-    }
-  }
+const Menu = ({ menustate, menuclick}: Props) => {
 
-  const menuTitles = [
-    'Home',
-    'Pools',
-    'Excavation',
-    'Estimate',
+  const menuItems = [
+    {
+      title: 'Acceuil',
+      url: '/',
+      items: null
+    },
+    {
+      title: 'Nos Services',
+      url: '',
+      items: [
+        {
+          title: 'Piscines',
+          url: '/piscines'
+        },
+        {
+          title: 'Aménagements',
+          url: '/amenagements'
+        },
+        {
+          title: 'Excavation',
+          url: '/excavations'
+        }
+      ]
+    },
+    {
+      title: 'Portfolio',
+      url: '/portfolio',
+      items: null
+    },
+    {
+      title: 'L\'Expérience Skella',
+      url: '/experience',
+      items: null
+    },
+    {
+      title: 'Blog',
+      url: '/blog',
+      items: null
+    },
+    {
+      title: 'Contact',
+      url: '/contact',
+      items: null
+    },
   ]
 
   return(
     <>
-      <Hamburger menuState={menuState} handleMenuClick={handleMenuClick} />
-      <div className={`header-menu ${menuState}-slider main-color-background`}>
+      <Hamburger menuState={menustate} handleMenuClick={menuclick} />
+      <div className={`header-menu ${menustate}-slider main-color-background`}>
         <nav className='header-menu-nav'>
           {
-            menuTitles.map((item, index) => {
-              return <MenuItem key={index} title={item.toUpperCase()} handlemenuclick={handleMenuClick} />
+            menuItems.map((item, index) => {
+              return <MenuItem key={index} title={item.title} url={item.url} items={item.items} handlemenuclick={menuclick} />
             })
           }
         </nav>

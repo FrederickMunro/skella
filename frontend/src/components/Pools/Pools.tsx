@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './Pools.css';
 import PoolContainer from './PoolContainer';
+import TitleDesc from '../TitleDesc';
 
 interface Pool {
     id: string;
@@ -16,7 +17,6 @@ interface Pool {
 const Pools = () => {
 
     const apiUrl = import.meta.env.VITE_API_URL as string;
-
     const isAdmin = import.meta.env.VITE_IS_ADMIN === 'true';
 
     const [pools, setPools] = useState<Pool[]>([]);
@@ -164,19 +164,28 @@ const Pools = () => {
         }
     };
 
+    
+
     const handleDelete = async (id: string) => {
-        try {
-          await axios.delete(`${apiUrl}/pools/${id}`);
-          setPools(pools.filter(pool => pool.id !== id));
-          fetchPools();
-        } catch (err) {
-          console.error('Error deleting pool', err);
+        // Add confirmation dialog
+        const isConfirmed = window.confirm('Are you sure you want to delete this pool? This action cannot be undone.');
+        
+        if (!isConfirmed) {
+            return;
         }
-      };
+
+        try {
+            await axios.delete(`${apiUrl}/pools/${id}`);
+            setPools(pools.filter(pool => pool.id !== id));
+            fetchPools();
+        } catch (err) {
+            console.error('Error deleting pool', err);
+        }
+    }
 
     return (
         <div className='pools-container'>
-            <h1 className='pools-title'>Pool Models</h1>
+            <TitleDesc tag='piscines' />
             <div className='pools-pool-container'>
             {
                 pools.map((pool) => (
@@ -244,6 +253,16 @@ const Pools = () => {
                                     <div className="edit-form-buttons">
                                         <button type="button" onClick={() => handleUpdate(pool.id)}>Save Changes</button>
                                         <button type="button" onClick={() => setEditingPool(null)}>Cancel</button>
+                                        <button 
+                                            type="button"
+                                            className="delete-button"
+                                            onClick={() => {
+                                                handleDelete(pool.id);
+                                                setEditingPool(null);
+                                            }}
+                                        >
+                                            Delete Pool
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -257,7 +276,6 @@ const Pools = () => {
                             sizes={pool.sizes}
                             depths={pool.depths}
                             image={pool.image}
-                            handleDelete={handleDelete}
                             handleEdit={() => handleEdit(pool)}
                         />
                     )
