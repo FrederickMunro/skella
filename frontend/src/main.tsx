@@ -14,6 +14,9 @@ import Blog from "./components/Blog/Blog";
 import Contact from "./components/Contact/Contact";
 import Experience from "./components/Experience/Experience";
 import Footer from "./components/Footer/Footer";
+import Altea from "./components/Pools/Altea";
+import Evoa from "./components/Pools/Evoa";
+import Fluvia from "./components/Pools/Fluvia";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +95,36 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Contact />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: '/altea',
+    element: (
+      <>
+        <Header />
+        <Altea />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: '/evoa',
+    element: (
+      <>
+        <Header />
+        <Evoa />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: '/fluvia',
+    element: (
+      <>
+        <Header />
+        <Fluvia />
         <Footer />
       </>
     )

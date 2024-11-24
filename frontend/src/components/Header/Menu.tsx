@@ -19,22 +19,32 @@ const Menu = ({ menustate, menuclick}: Props) => {
       items: null
     },
     {
-      title: 'Nos Services',
-      url: '',
+      title: 'Piscines',
+      url: '/piscines',
       items: [
         {
-          title: 'Piscines',
-          url: '/piscines'
+          title: 'Altea',
+          url: '/altea'
         },
         {
-          title: 'Aménagements',
-          url: '/amenagements'
+          title: 'Evoa',
+          url: '/evoa'
         },
         {
-          title: 'Excavation',
-          url: '/excavations'
+          title: 'Fluvia',
+          url: '/fluvia'
         }
       ]
+    },
+    {
+      title: 'Aménagements',
+      url: '/amenagements',
+      items: null
+    },
+    {
+      title: 'Excavation',
+      url: '/excavations',
+      items: null
     },
     {
       title: 'Portfolio',

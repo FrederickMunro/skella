@@ -9,6 +9,7 @@ interface PageDetail {
   tag: string;
   title: string;
   description: string;
+  image: string;
 }
 
 interface Props {
@@ -22,32 +23,36 @@ const TitleDesc = ({ tag }: Props) => {
 
   const [pageDetail, setPageDetail] = useState({
     id: '',
-    tag: '',
+    tag,
     title: '',
-    description: ''
+    description: '',
+    image: ''
   });
 
   const items: Item[] = [
     {
       label: 'Title',
       type: 'input',
-      placeholder: '',
       value: pageDetail.title,
       setValue: (title: string) => setPageDetail(prev => ({ ...prev, title })),
     },
     {
       label: 'Description',
       type: 'textarea',
-      placeholder: '',
       value: pageDetail.description,
       setValue: (description: string) => setPageDetail(prev => ({ ...prev, description })),
+    },
+    {
+      label: 'Image',
+      type: 'image',
+      value: pageDetail.image,
+      setValue: (image: string) => setPageDetail(prev => ({ ...prev, image })),
     },
   ]
 
   const fetchPageDetail = async () => {
     try {
       const res = await axios.get<PageDetail>(`${apiUrl}/getpagedetails/${tag}`);
-      console.log(res.data);
       setPageDetail(res.data);
     } catch (err: any) {
         console.error(err);
@@ -57,10 +62,29 @@ const TitleDesc = ({ tag }: Props) => {
   useEffect(() => {
     fetchPageDetail();
   }, [])
+  const submit = async () => {
+    const formData = new FormData();
+    formData.append('tag', pageDetail.tag);
+    formData.append('title', pageDetail.title);
+    formData.append('description', pageDetail.description);
 
-  const submit = () => {
-    return;
-  }
+    // Append image as Base64 string if it exists
+    if (pageDetail.image) {
+        formData.append('image', pageDetail.image); // Directly append the Base64 string
+    }
+
+    try {
+        const res = await axios.put(`${apiUrl}/modifypagedetails`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        console.log(res.data);
+        await fetchPageDetail();
+    } catch (err: any) {
+        console.error(err);
+    }
+};
 
   return(
     <EditableComponent items={items} submit={submit}>
@@ -68,14 +92,16 @@ const TitleDesc = ({ tag }: Props) => {
         <title>{pageDetail.title}</title>
         <meta name='description' content={pageDetail.description} />
       </Helmet>
-      <div>
+      <div style={{
+        backgroundImage: `url(${pageDetail.image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '40rem', // Set the height as needed
+        width: '100%', // Set the width as needed
+        color: 'white', // Adjust text color for readability
+      }}>
         <h1>{pageDetail.title}</h1>
-        {
-          isAdmin && 
-          <>
-            <p>{pageDetail.description}</p>
-          </>
-        }
+        { isAdmin && <p>{pageDetail.description}</p> }
       </div>
     </EditableComponent>
   )

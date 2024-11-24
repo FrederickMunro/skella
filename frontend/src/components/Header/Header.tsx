@@ -28,6 +28,7 @@ const Header = () => {
       <Link
         to='/'
         onClick={() => handleHomeClick()}
+        className='header-home-logo-container'
       >
         <img className='header-home-logo' src={CompanyLogo} alt='Company Logo' />
       </Link>

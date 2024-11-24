@@ -1,5 +1,5 @@
 import './Home.css';
-import Video from '../../assets/videos/hockey.mp4';
+import Video from '../../assets/videos/poolvid1.mp4';
 
 const HomeVideo = () => {
   return (

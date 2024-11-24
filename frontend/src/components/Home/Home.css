@@ -1,7 +1,7 @@
 @media only screen and (max-width: 767px) {
   .home-container {
     display: flex;
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
   }
   
@@ -12,7 +12,7 @@
     justify-content: center;
     position: relative;
     height: 100vh;
-    max-height: 800px;
+    max-height: 100rem;
   }
   
   .home-video {
@@ -67,6 +67,99 @@
     font-weight: 600;
     font-size: 20px;
     margin: 0;
+  }
+  
+  .home-service-section {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease, height 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.2rem;
+    width: 100%;
+    height: 40rem;
+    margin: 0.1rem 0 0.1rem 0;
+  }
+
+  .home-service-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  
+  .home-service-dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-service-section:hover .home-service-dark-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .home-service-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
+
+  .home-service-title {
+    font-size: 5rem;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.7s ease;
+  }
+
+  .home-service-description {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+
+  .home-service-section:hover .home-service-title {
+    transform: translateY(-5px);
+  }
+
+  .home-service-section:hover .home-service-description {
+    opacity: 1;
+  }
+
+  .home-section-title {
+    margin: 5rem 0 0 0;
+    font-size: 5rem;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .home-section-desc {
+    text-align: center;
+    margin: 2rem 0 10rem 0;
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.1rem;
+    line-height: 3rem;
+  }
+
+  .home-section {
+    padding-bottom: 5rem;
+    width: 100%;
   }
 }
 

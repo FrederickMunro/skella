@@ -5,13 +5,19 @@
 }
 
 .header-home-logo {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 @media only screen and (max-width: 767px) {
   .header-container {
-    height: 8rem;
+    min-height: 10rem;
+  }
+
+  .header-home-logo-container {
+    height: 55%;
+    display: flex;
+
   }
 
   .header-menu-open-slider {

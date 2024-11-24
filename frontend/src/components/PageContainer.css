@@ -10,16 +10,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
   font-family: 'Roboto', sans-serif;
 }
 
 .editable-container {
   position: relative; /* Required for positioning the overlay */
   transition: all 0.3s ease; /* Smooth transition for dimming */
-  background-color: white; /* Default background */
   overflow: hidden; /* Ensures the overlay stays within the container */
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
   width: 100%;
 }
