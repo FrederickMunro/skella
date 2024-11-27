@@ -1,13 +1,18 @@
 package com.skella.controller;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.UUID;
 import java.util.HashMap;
 import java.util.Base64;
 import org.bson.types.Binary;
+import java.nio.file.Path;
+import java.nio.file.Files;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -23,6 +28,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;
@@ -31,12 +38,26 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.skella.dto.Pool;
 
+import com.skella.service.R2UploadService;
+
 @RestController
 @CrossOrigin
 class PoolController {
 
     @Autowired
     MongoClient mongoClient;
+
+    @Autowired
+    private R2UploadService r2UploadService;
+
+    @Value("${r2.endpoint}")
+    private String endpoint;
+
+    @Value("${r2.public-endpoint}")
+    private String publicEndpoint;
+
+    @Value("${r2.bucket-name}")
+    private String bucketName;
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/allpools")
@@ -49,15 +70,10 @@ class PoolController {
             Map<String, Object> pool = new HashMap<>();
             pool.put("id", doc.getObjectId("_id").toString());
             pool.put("name", doc.getString("name"));
+            pool.put("description", doc.getString("description"));
             pool.put("tag", doc.getString("tag"));
-            
-            // Convert Binary image to Base64 string
-            Binary imageBinary = doc.get("image", Binary.class);
-            if (imageBinary != null) {
-                String base64Image = Base64.getEncoder().encodeToString(imageBinary.getData());
-                pool.put("image", "data:image/jpeg;base64," + base64Image);
-            }
-            
+            pool.put("image", doc.getString("image"));
+            pool.put("model", doc.getString("model"));
             pools.add(pool);
         });
 
@@ -66,42 +82,87 @@ class PoolController {
 
     @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/addpool")
-    public ResponseEntity<Pool> addPool(
-        @RequestParam("name") String name, 
-        @RequestParam("description") String description,
-        @RequestParam("tag") String tag,
-        @RequestParam("sizedepth") String sizeDepth,
-        @RequestParam(value = "image", required = false) String base64Image) {
+    public ResponseEntity<?> addPool(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "description", required = false) String description,
+            @RequestParam(value = "tag", required = true) String tag,
+            @RequestParam(value = "sizedepth", required = false) String sizeDepth,
+            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "model", required = false) MultipartFile modelFile) {
         try {
-            // Validate inputs
-            if (name == null || name.isEmpty() || sizeDepth == null || sizeDepth.isEmpty() || tag == null || tag.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            // Validate mandatory parameters
+            if (tag == null || tag.isEmpty()) {
+                return ResponseEntity.badRequest().body("Missing required parameters: 'name' or 'tag'");
             }
-
-            System.out.println(sizeDepth);
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<List<String>> sizeDepthArray = objectMapper.readValue(sizeDepth, List.class);
-
-            // Decode Base64 image if provided
-            byte[] imageBytes = null;
-            if (base64Image != null && !base64Image.isEmpty()) {
+    
+            // Upload the image to Cloudflare R2 if provided
+            String imagePath = null;
+            if (imageFile != null && !imageFile.isEmpty()) {
+                // Generate a unique key for the uploaded file
+                String key = "uploads/" + UUID.randomUUID() + "-" + imageFile.getOriginalFilename();
+    
+                // Create a temporary file
+                Path tempFile = Files.createTempFile("upload-", imageFile.getOriginalFilename());
+    
                 try {
-                    // Remove the Base64 header if present
-                    String base64Content = base64Image.replaceFirst("^data:image/[^;]+;base64,", "");
-                    imageBytes = Base64.getDecoder().decode(base64Content);
-                } catch (IllegalArgumentException e) {
-                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                    // Transfer the MultipartFile to the temporary file
+                    imageFile.transferTo(tempFile);
+    
+                    // Upload to Cloudflare R2
+                    r2UploadService.uploadFile(bucketName, key, tempFile);
+    
+                    // Construct the public URL
+                    imagePath = String.format(key);
+                } finally {
+                    // Clean up the temporary file
+                    Files.deleteIfExists(tempFile);
                 }
             }
 
-            // Create the pool object and save it to the database
-            Pool pool = new Pool(name, description, tag, sizeDepthArray, imageBytes);
+            String modelPath = null;
+            if (modelFile != null && !modelFile.isEmpty()) {
+                // Generate a unique key for the uploaded file
+                String key = "uploads/" + UUID.randomUUID() + "-" + modelFile.getOriginalFilename();
+    
+                // Create a temporary file
+                Path tempFile = Files.createTempFile("upload-", modelFile.getOriginalFilename());
+    
+                try {
+                    // Transfer the MultipartFile to the temporary file
+                    modelFile.transferTo(tempFile);
+    
+                    // Upload to Cloudflare R2
+                    r2UploadService.uploadFile(bucketName, key, tempFile);
+    
+                    // Construct the public URL
+                    modelPath = String.format(key);
+                } finally {
+                    // Clean up the temporary file
+                    Files.deleteIfExists(tempFile);
+                }
+            }
+    
+            // Parse sizeDepth JSON into List<List<String>>
+            List<List<String>> sizeDepthArray = null;
+            if (sizeDepth != null && !sizeDepth.isEmpty()) {
+                try {
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    sizeDepthArray = objectMapper.readValue(sizeDepth, List.class);
+                } catch (Exception e) {
+                    return ResponseEntity.badRequest().body("Invalid 'sizeDepth' format");
+                }
+            }
+    
+            // Create the Pool object
+            Pool pool = new Pool(name, description, tag, sizeDepthArray, imagePath, modelPath);
+    
+            // Save the Pool object to MongoDB
             MongoDatabase database = mongoClient.getDatabase("skella");
             MongoCollection<Document> collection = database.getCollection("pools");
             collection.insertOne(pool.toDocument());
-
+    
             return new ResponseEntity<>(pool, HttpStatus.CREATED);
+    
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -114,59 +175,41 @@ class PoolController {
         MongoDatabase database = mongoClient.getDatabase("skella");
         MongoCollection<Document> collection = database.getCollection("pools");
 
-        collection.deleteOne(new Document("_id", new ObjectId(id)));
+        try {
+            // Find the pool to get the image path
+            Document pool = collection.find(new Document("_id", new ObjectId(id))).first();
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+            if (pool != null && pool.getString("image") != null) {
+                String imagePath = pool.getString("image");
 
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/poolsbytag/{tag}")
-    public ResponseEntity<List<Map<String, Object>>> getPoolsByTag(@PathVariable String tag) {
-        // Connect to MongoDB database and collection
-        MongoDatabase database = mongoClient.getDatabase("skella");
-        MongoCollection<Document> collection = database.getCollection("pools");
+                // Extract the key from the image URL
+                String key = endpoint + "/" + pool.getString("image");
 
-        // Filter by tag
-        Bson filter = Filters.eq("tag", tag);
-        List<Map<String, Object>> pools = new ArrayList<>();
-
-        // Fetch and process documents
-        collection.find(filter).forEach(doc -> {
-            Map<String, Object> pool = new HashMap<>();
-            pool.put("id", doc.getObjectId("_id").toString());
-            pool.put("name", doc.getString("name"));
-            pool.put("description", doc.getString("description"));
-            pool.put("tag", doc.getString("tag"));
-
-            // Convert image (if available) to Base64 string
-            Binary imageBinary = doc.get("image", Binary.class);
-            if (imageBinary != null) {
-                String base64Image = Base64.getEncoder().encodeToString(imageBinary.getData());
-                pool.put("image", "data:image/jpeg;base64," + base64Image);
+                // Delete the image from Cloudflare R2
+                r2UploadService.deleteFile(bucketName, key);
             }
 
-            // Add sizedepth to the response if it exists
-            List<List<String>> sizeDepth = (List<List<String>>) doc.get("sizeDepth");
-            if (sizeDepth != null) {
-                pool.put("sizeDepth", sizeDepth);
-            }
+            // Delete the pool from the database
+            collection.deleteOne(new Document("_id", new ObjectId(id)));
 
-            pools.add(pool);
-        });
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        // Return the response
-        return new ResponseEntity<>(pools, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping("/pools/{id}")
-    public ResponseEntity<Pool> updatePool(
+    public ResponseEntity<?> updatePool(
             @PathVariable String id,
-            @RequestParam("name") String name,
-            @RequestParam("description") String description,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "description", required = false) String description,
             @RequestParam(value = "sizedepth", required = false) String sizeDepthJson,
-            @RequestParam(value = "image", required = false) String image) {
-        
+            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "model", required = false) MultipartFile modelFile) {
+
         MongoDatabase database = mongoClient.getDatabase("skella");
         MongoCollection<Document> collection = database.getCollection("pools");
 
@@ -175,49 +218,145 @@ class PoolController {
             Document existingPool = collection.find(query).first();
 
             if (existingPool == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("Pool not found", HttpStatus.NOT_FOUND);
             }
 
-            Document updateDoc = new Document().append("name", name);
-            updateDoc.append("description", description);
+            Document updateDoc = new Document();
 
-            // Update sizedepth if provided
+            // Update name and description if provided
+            if (name != null && !name.isEmpty()) {
+                updateDoc.append("name", name);
+            }
+            if (description != null && !description.isEmpty()) {
+                updateDoc.append("description", description);
+            }
+
+            // Handle sizeDepth updates
             if (sizeDepthJson != null && !sizeDepthJson.isEmpty()) {
                 try {
                     ObjectMapper objectMapper = new ObjectMapper();
                     List<List<String>> sizeDepth = objectMapper.readValue(sizeDepthJson, List.class);
                     updateDoc.append("sizeDepth", sizeDepth);
                 } catch (Exception e) {
-                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity<>("Invalid sizeDepth format", HttpStatus.BAD_REQUEST);
+                }
+            } else {
+                // If sizeDepthJson is null or empty, retain the existing value in the database
+                updateDoc.append("sizeDepth", existingPool.get("sizeDepth"));
+            }
+
+            // Handle image upload if provided
+            if (imageFile != null && !imageFile.isEmpty()) {
+                // Delete old image from Cloudflare R2
+                String oldImagePath = existingPool.getString("image");
+                if (oldImagePath != null && !oldImagePath.isEmpty()) {
+                    // Extract the key from the URL
+                    String oldKey = oldImagePath;
+                    r2UploadService.deleteFile(bucketName, oldKey);
+                }
+
+                // Generate a unique key for the new uploaded file
+                String key = "uploads/" + UUID.randomUUID() + "-" + imageFile.getOriginalFilename();
+
+                // Create a temporary file
+                Path tempFile = Files.createTempFile("upload-", imageFile.getOriginalFilename());
+
+                try {
+                    // Transfer the MultipartFile to the temporary file
+                    imageFile.transferTo(tempFile);
+
+                    // Upload to Cloudflare R2
+                    r2UploadService.uploadFile(bucketName, key, tempFile);
+
+                    // Construct the public URL
+                    String imagePath = String.format(key);
+
+                    // Add the new image URL to the update document
+                    updateDoc.append("image", imagePath);
+                } finally {
+                    // Clean up the temporary file
+                    Files.deleteIfExists(tempFile);
                 }
             }
 
-            // Update image if provided
-            if (image != null && !image.isEmpty()) {
-                String base64Content;
-                if (image.startsWith("data:image/jpeg;base64,")) {
-                    base64Content = image.replace("data:image/jpeg;base64,", "");
-                } else if (image.startsWith("data:image/png;base64,")) {
-                    base64Content = image.replace("data:image/png;base64,", "");
-                } else {
-                    throw new IllegalArgumentException("Unsupported image format. Only JPEG and PNG are allowed.");
+            // Handle image upload if provided
+            if (modelFile != null && !modelFile.isEmpty()) {
+                // Delete old image from Cloudflare R2
+                String oldModelPath = existingPool.getString("model");
+                if (oldModelPath != null && !oldModelPath.isEmpty()) {
+                    // Extract the key from the URL
+                    String oldKey = oldModelPath;
+                    r2UploadService.deleteFile(bucketName, oldKey);
                 }
-                byte[] imageBytes = Base64.getDecoder().decode(base64Content);
-                updateDoc.append("image", new Binary(imageBytes));
+
+                // Generate a unique key for the new uploaded file
+                String key = "uploads/" + UUID.randomUUID() + "-" + modelFile.getOriginalFilename();
+
+                // Create a temporary file
+                Path tempFile = Files.createTempFile("upload-", modelFile.getOriginalFilename());
+
+                try {
+                    // Transfer the MultipartFile to the temporary file
+                    modelFile.transferTo(tempFile);
+
+                    // Upload to Cloudflare R2
+                    r2UploadService.uploadFile(bucketName, key, tempFile);
+
+                    // Construct the public URL
+                    String modelPath = String.format(key);
+
+                    // Add the new image URL to the update document
+                    updateDoc.append("model", modelPath);
+                } finally {
+                    // Clean up the temporary file
+                    Files.deleteIfExists(tempFile);
+                }
             }
 
+            // Update the pool in MongoDB
             collection.updateOne(query, new Document("$set", updateDoc));
 
-            // Fetch and return updated pool
+            // Fetch and return the updated pool
             Document updatedPool = collection.find(query).first();
             return new ResponseEntity<>(Pool.fromDocument(updatedPool), HttpStatus.OK);
 
         } catch (Exception e) {
-            // Capture and print stack trace
-            StringWriter sw = new StringWriter();
-            e.printStackTrace(new PrintWriter(sw));
-            String stackTrace = sw.toString();
-            System.err.println("Stack trace: " + stackTrace); // Print to console or logger
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:5173")
+    @GetMapping("/poolsbytag/{tag}")
+    public ResponseEntity<List<Map<String, Object>>> getPoolsByTag(@PathVariable("tag") String tag) {
+        MongoDatabase database = mongoClient.getDatabase("skella");
+        MongoCollection<Document> collection = database.getCollection("pools");
+
+        try {
+            // Find pools with the specified tag
+            List<Map<String, Object>> pools = new ArrayList<>();
+            collection.find(new Document("tag", tag)).forEach(doc -> {
+                Map<String, Object> pool = new HashMap<>();
+                pool.put("id", doc.getObjectId("_id").toString());
+                pool.put("name", doc.getString("name"));
+                pool.put("description", doc.getString("description"));
+                pool.put("tag", doc.getString("tag"));
+                String imagePath = publicEndpoint + "/" + doc.getString("image");
+                pool.put("image", imagePath);
+                String modelPath = publicEndpoint + "/" + doc.getString("model");
+                pool.put("model", modelPath);
+                pool.put("sizeDepth", doc.get("sizeDepth"));
+                pools.add(pool);
+            });
+
+            if (pools.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<>(pools, HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -1,3 +1,46 @@
 .footer-container {
-    
+    padding: 2rem 4rem 2rem 4rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer-contact-div {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    width: auto;
+}
+
+.footer-container-left > h3 {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+}
+
+.footer-contact-icon {
+    margin-right: 1rem;
+    font-size: 2rem;
+}
+
+.footer-contact-link {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-left: 1.6rem;
+}
+
+.footer-contact-link:hover {
+    color: lightblue;
+}
+
+.footer-contact-link > p {
+    margin: 1rem 0 1rem 0;
+}
+
+.contact-socials {
+    margin-top: 2rem;
+}
+
+.contact-socials > a {
+    width: 2rem;
+    height: 2rem;
 }

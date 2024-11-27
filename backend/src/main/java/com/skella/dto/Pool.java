@@ -13,24 +13,25 @@ public class Pool {
     private String name;
     private String description;
     private String tag;
-    private Binary image; // Stored as Binary in MongoDB
-    private List<List<String>> sizeDepth; // Added sizeDepth field
+    private String image;
+    private String model;
+    private List<List<String>> sizeDepth;
 
-    // Default Constructor
     public Pool() {
         this.name = null;
         this.tag = null;
         this.image = null;
+        this.model = null;
         this.sizeDepth = null;
     }
 
-    // Updated Constructor
-    public Pool(String name, String description, String tag, List<List<String>> sizeDepth, byte[] image) {
+    public Pool(String name, String description, String tag, List<List<String>> sizeDepth, String image, String model) {
         this.name = name;
         this.description = description;
         this.tag = tag;
         this.sizeDepth = sizeDepth;
-        this.image = (image != null) ? new Binary(image) : null;
+        this.image = image;
+        this.model = model;
     }
 
     /* Accessors */
@@ -51,44 +52,16 @@ public class Pool {
         return this.tag;
     }
 
-    public Binary getImage() {
+    public String getImage() {
         return this.image;
+    }
+
+    public String getModel() {
+        return this.model;
     }
 
     public List<List<String>> getSizeDepth() {
         return this.sizeDepth;
-    }
-
-    /**
-     * Returns the image as a Base64 string.
-     */
-    public String getImageBase64() {
-        if (this.image != null) {
-            return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(this.image.getData());
-        }
-        return null;
-    }
-
-    public Document toDocument() {
-        Document document = new Document("name", this.getName())
-            .append("description", this.getDescription())
-            .append("tag", this.getTag())
-            .append("sizeDepth", this.getSizeDepth());
-        if (this.getImage() != null) {
-            document.append("image", this.getImage());
-        }
-        return document;
-    }
-
-    public static Pool fromDocument(Document document) {
-        Pool pool = new Pool();
-        pool.setId(document.getObjectId("_id").toString());
-        pool.setName(document.getString("name"));
-        pool.setName(document.getString("description"));
-        pool.setTag(document.getString("tag"));
-        pool.setSizeDepth((List<List<String>>) document.get("sizeDepth"));
-        pool.setImage((Binary) document.get("image"));
-        return pool;
     }
 
     /* Mutators */
@@ -109,22 +82,37 @@ public class Pool {
         this.tag = tag;
     }
 
-    public void setImage(Binary image) {
+    public void setImage(String image) {
         this.image = image;
-    }
-
-    /**
-     * Sets the image from a Base64 string.
-     */
-    public void setImageBase64(String base64Image) {
-        if (base64Image != null && base64Image.startsWith("data:image/")) {
-            String base64Data = base64Image.substring(base64Image.indexOf(",") + 1);
-            byte[] imageBytes = Base64.getDecoder().decode(base64Data);
-            this.image = new Binary(imageBytes);
-        }
     }
 
     public void setSizeDepth(List<List<String>> sizeDepth) {
         this.sizeDepth = sizeDepth;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Document toDocument() {
+        Document document = new Document("name", this.getName())
+            .append("description", this.getDescription())
+            .append("tag", this.getTag())
+            .append("sizeDepth", this.getSizeDepth())
+            .append("image", this.getImage())
+            .append("model", this.getModel());
+        return document;
+    }
+
+    public static Pool fromDocument(Document document) {
+        Pool pool = new Pool();
+        pool.setId(document.getObjectId("_id").toString());
+        pool.setName(document.getString("name"));
+        pool.setName(document.getString("description"));
+        pool.setTag(document.getString("tag"));
+        pool.setSizeDepth((List<List<String>>) document.get("sizeDepth"));
+        pool.setImage(document.getString("image"));
+        pool.setModel(document.getString("model"));
+        return pool;
     }
 }

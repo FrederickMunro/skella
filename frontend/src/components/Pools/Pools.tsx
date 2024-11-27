@@ -8,11 +8,12 @@ import ContentContainer from '../ContentContainer';
 
 interface Pool {
     id: string;
+    tag: string;
     name: string;
     description: string;
-    sizes: string[];
-    depths: string[];
+    sizeDepth: [string,string][];
     image: string;
+    model: string;
 }
 
 const Pools = () => {

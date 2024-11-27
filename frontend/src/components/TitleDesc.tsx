@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import EditableComponent from './Edit/EditableComponent';
 import { Item } from './Edit/EditModal';
 
+import './PageContainer.css';
+
 interface PageDetail {
   id: string;
   tag: string;
@@ -54,6 +56,7 @@ const TitleDesc = ({ tag }: Props) => {
     try {
       const res = await axios.get<PageDetail>(`${apiUrl}/getpagedetails/${tag}`);
       setPageDetail(res.data);
+      console.log(res.data);
     } catch (err: any) {
         console.error(err);
     }
@@ -61,7 +64,9 @@ const TitleDesc = ({ tag }: Props) => {
 
   useEffect(() => {
     fetchPageDetail();
-  }, [])
+  }, []);
+
+
   const submit = async () => {
     const formData = new FormData();
     formData.append('tag', pageDetail.tag);
@@ -71,6 +76,10 @@ const TitleDesc = ({ tag }: Props) => {
     // Append image as Base64 string if it exists
     if (pageDetail.image) {
         formData.append('image', pageDetail.image); // Directly append the Base64 string
+    }
+
+    for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
     }
 
     try {
@@ -92,16 +101,10 @@ const TitleDesc = ({ tag }: Props) => {
         <title>{pageDetail.title}</title>
         <meta name='description' content={pageDetail.description} />
       </Helmet>
-      <div style={{
-        backgroundImage: `url(${pageDetail.image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '40rem', // Set the height as needed
-        width: '100%', // Set the width as needed
-        color: 'white', // Adjust text color for readability
-      }}>
-        <h1>{pageDetail.title}</h1>
-        { isAdmin && <p>{pageDetail.description}</p> }
+      <div className='titledesc-container'>
+        <img className='titledesc-img' src={pageDetail.image} />
+        <h1 className='titledesc-title'>{pageDetail.title}</h1>
+        { isAdmin && <p className='titledesc-desc'>{pageDetail.description}</p> }
       </div>
     </EditableComponent>
   )

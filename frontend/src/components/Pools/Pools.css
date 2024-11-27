@@ -22,7 +22,6 @@
   }
 
   .pools-pool-info-container {
-    border-top: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,13 +33,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8vw 5vw 8vw 5vw;
+    justify-content: center;
+    background-color: #001F3F;
+    color: white;
+    width: 90%;
+    margin: 4vw 0 4vw 0;
+    border-radius: 1rem;
   }
 
   .pools-title {
     font-size: 3rem;
-    margin: 1rem 0 1rem 0;
     font-weight: bolder;
+    margin: 0;
   }
 
   .pools-seo {
@@ -50,13 +54,16 @@
   }
 
   .pools-container-title {
-    font-size: 30px;
-    margin: 0;
+    font-size: 35px;
+    margin: 12vw 5rem 1rem 5rem;
     align-self: flex-start;
+    font-style: italic;
   }
 
   .pools-container-desc {
     font-size: 20px;
+    align-self: flex-start;
+    margin: 0 5rem 0 5rem
   }
 
   .pools-container-sizes {
@@ -177,7 +184,19 @@
   }
 
   .pools-pool-image {
-    max-width: 40rem;
+    height: 55vw;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  .pools-pool-model {
+    height: 25vw;
+    position: absolute;
+    top: 42vw;
+    align-self: flex-start;
+    margin-left: 2rem;
   }
 
   .pools-container-lists {

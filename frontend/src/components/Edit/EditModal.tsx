@@ -5,7 +5,7 @@ export interface Item {
     label: string;
     type: string;
     placeholder?: string;
-    value: string | [string,string][];
+    value: string | [string,string][] | File | null;
     setValue: Function;
 }
 
@@ -58,7 +58,12 @@ const EditModal = ({ items, submit, remove, close }: Props) => {
                         className='edit-modal-image'
                         type='file'
                         accept='image/*'
-                        onChange={(e) => handleFileChange(e.target.files ? e.target.files[0] : null, item.setValue)}
+                        onChange={(e) => {
+                            const file = e.target.files?.[0]; // Check if files is not null
+                            if (file) {
+                                item.setValue(file); // Use item.setValue instead of setValue
+                            }
+                        }}
                     />
                 </div>
             case 'sizedepth':
@@ -95,26 +100,6 @@ const EditModal = ({ items, submit, remove, close }: Props) => {
             setSizeDepth(prev => [...prev, [sizes, depths]]);
             setSizes('');
             setDepths('');
-        }
-    };
-
-    const convertToBase64 = (file: File): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result as string);
-            reader.onerror = (error) => reject(error);
-        });
-    };
-
-    const handleFileChange = async (file: File | null, setValue: Function) => {
-        if (file) {
-            try {
-                const base64 = await convertToBase64(file);
-                setValue(base64); // Update the item's value with the Base64 string
-            } catch (error) {
-                console.error('Error converting file to Base64:', error);
-            }
         }
     };
 

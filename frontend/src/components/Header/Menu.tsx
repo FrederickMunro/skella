@@ -14,14 +14,13 @@ const Menu = ({ menustate, menuclick}: Props) => {
 
   const menuItems = [
     {
-      title: 'Acceuil',
-      url: '/',
-      items: null
-    },
-    {
       title: 'Piscines',
       url: '/piscines',
       items: [
+        {
+          title: 'Collections',
+          url: '/collections'
+        },
         {
           title: 'Altea',
           url: '/altea'
@@ -46,11 +45,11 @@ const Menu = ({ menustate, menuclick}: Props) => {
       url: '/excavations',
       items: null
     },
-    {
-      title: 'Portfolio',
-      url: '/portfolio',
-      items: null
-    },
+    // {
+    //   title: 'Portfolio',
+    //   url: '/portfolio',
+    //   items: null
+    // },
     {
       title: 'L\'Expérience Skella',
       url: '/experience',

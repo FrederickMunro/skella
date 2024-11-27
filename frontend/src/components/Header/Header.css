@@ -11,13 +11,13 @@
 
 @media only screen and (max-width: 767px) {
   .header-container {
-    min-height: 10rem;
+    min-height: min(9rem, max(15vw, 7rem));
+    max-height: min(9rem, max(15vw, 7rem));
   }
 
   .header-home-logo-container {
     height: 55%;
     display: flex;
-
   }
 
   .header-menu-open-slider {
@@ -34,28 +34,34 @@
     align-items: center;
     justify-content: space-around;
     position: fixed;
-    height: calc(100vh - 8rem);
+    height: calc(100vh - min(9rem, max(15vw, 7rem)));
     right: 0;
-    top: 8rem;
+    padding-top: 2rem;
+    top: min(9rem, max(15vw, 7rem));
     transition: width 0.3s ease;
     z-index: 1;
+    background-color: white;
   }
 
   .header-menu-nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 25vw;
     flex-grow: 1;
     width: 80%;
   }
 
   .header-hamburger-menu {
     cursor: pointer;
+    width: calc(min(9rem, max(15vw, 7rem)) * 0.5);
+    height: calc(min(9rem, max(15vw, 7rem)) * 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
+  
   .header-hamburger-line {
-    stroke-width: 6;
+    stroke-width: calc(min(9rem, max(15vw, 7rem)) * 0.1);
     stroke-linecap: round;
     stroke: black;
     transition: all 0.5s;
@@ -94,7 +100,7 @@
     text-decoration: none;
     color: black;
     font-family: 'Roboto', sans-serif;
-    font-size: max(3rem, 7vw);
+    font-size: max(2rem, min(6vw, 4rem));
     letter-spacing: 0.1rem;
     font-weight: 300;
     padding: 0px;

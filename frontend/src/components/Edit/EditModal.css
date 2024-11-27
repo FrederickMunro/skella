@@ -12,6 +12,7 @@
 
 .modal-content {
     background: white;
+    color: black;
     padding: 20px;
     border-radius: 8px;
     width: 400px;
@@ -75,8 +76,7 @@
 }
 
 .edit-modal-image-preview {
-    max-width: 30rem;
-    max-height: 30rem;
+    max-height: 5rem;
 }
 
 .edit-modal-button-container {

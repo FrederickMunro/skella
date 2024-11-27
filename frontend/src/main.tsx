@@ -17,6 +17,7 @@ import Footer from "./components/Footer/Footer";
 import Altea from "./components/Pools/Altea";
 import Evoa from "./components/Pools/Evoa";
 import Fluvia from "./components/Pools/Fluvia";
+import Collections from "./components/Pools/Collections";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,16 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Contact />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: '/collections',
+    element: (
+      <>
+        <Header />
+        <Collections />
         <Footer />
       </>
     )

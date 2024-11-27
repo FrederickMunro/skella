@@ -12,6 +12,7 @@ interface Pool {
     description: string;
     sizeDepth: [string, string][];
     image: string;
+    model: string;
 }
 
 interface newPool {
@@ -20,6 +21,7 @@ interface newPool {
   description: string;
   sizeDepth: [string, string][]
   image: string;
+  model: string;
 }
 
 const Altea = () => {
@@ -35,13 +37,15 @@ const Altea = () => {
     tag,
     description: '',
     sizeDepth: [],
-    image: ''
+    image: '',
+    model: '',
   });
 
   const fetchPools = async () => {
       try {
           const res = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/${tag}`); 
           setPools(res.data);
+          console.log(res.data);
       } catch (err) {
           
       }
@@ -74,17 +78,27 @@ const Altea = () => {
       value: newPool.image,
       setValue: (image: string) => setNewPool(prev => ({ ...prev, image }))
     },
+    {
+      label: 'Image',
+      type: 'image',
+      value: newPool.image,
+      setValue: (model: string) => setNewPool(prev => ({ ...prev, model }))
+    },
   ]
 
   const submit = async () => {
-    console.log(newPool.sizeDepth)
-    console.log(JSON.stringify(newPool.sizeDepth))
+    console.log(newPool)
     const formData = new FormData();
+    formData.append('tag', tag);
     formData.append('name', newPool.name);
     formData.append('description', newPool.description);
-    formData.append('tag', tag);
-    formData.append('sizedepth', JSON.stringify(newPool.sizeDepth));
+    if (newPool.sizeDepth) {
+      formData.append('sizedepth', JSON.stringify(newPool.sizeDepth));
+    }
     if (newPool.image) {
+      formData.append('image', newPool.image);
+    }
+    if (newPool.model) {
       formData.append('image', newPool.image);
     }
 
@@ -100,7 +114,7 @@ const Altea = () => {
 
   useEffect(() => {
       fetchPools();
-  }, [pools])
+  }, [])
 
   return (
       <ContentContainer>

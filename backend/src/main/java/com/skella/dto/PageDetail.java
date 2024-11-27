@@ -9,17 +9,20 @@ public class PageDetail {
   private String tag;
   private String title;
   private String description;
+  private String image;
 
   public PageDetail() {
-    this.tag = tag;
+    this.tag = null;
     this.title = null;
     this.description = null;
+    this.image = null;
   }
 
-  public PageDetail(String title, String description) {
+  public PageDetail(String tag, String title, String description, String image) {
     this.tag = tag;
     this.title = title;
     this.description = description;
+    this.image = image;
   }
 
   public void setId(String id) {
@@ -38,6 +41,10 @@ public class PageDetail {
     this.description = description;
   }
 
+  public void setImage(String image) {
+    this.image = image;
+  }
+
   public String getId() {
     return this.id;
   }
@@ -54,10 +61,15 @@ public class PageDetail {
     return this.description;
   }
 
+  public String getImage() {
+    return this.image;
+  }
+
   public Document toDocument() {
     return new Document("tag", this.getTag())
-            .append("title", this.getTitle())
-            .append("description", this.getDescription());
+      .append("title", this.getTitle())
+      .append("description", this.getDescription())
+      .append("image", this.getImage());
   }
 
   public static PageDetail fromDocument(Document document) {
@@ -66,6 +78,7 @@ public class PageDetail {
     pageDetail.setTag(document.getString("tag"));
     pageDetail.setTitle(document.getString("title"));
     pageDetail.setDescription(document.getString("description"));
+    pageDetail.setImage(document.getString("image"));
     return pageDetail;
   }
 }
