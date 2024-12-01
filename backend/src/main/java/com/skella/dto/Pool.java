@@ -15,6 +15,7 @@ public class Pool {
     private String tag;
     private String image;
     private String model;
+    private String pdf;
     private List<List<String>> sizeDepth;
 
     public Pool() {
@@ -25,13 +26,14 @@ public class Pool {
         this.sizeDepth = null;
     }
 
-    public Pool(String name, String description, String tag, List<List<String>> sizeDepth, String image, String model) {
+    public Pool(String name, String description, String tag, List<List<String>> sizeDepth, String image, String model, String pdf) {
         this.name = name;
         this.description = description;
         this.tag = tag;
         this.sizeDepth = sizeDepth;
         this.image = image;
         this.model = model;
+        this.pdf = pdf;
     }
 
     /* Accessors */
@@ -58,6 +60,10 @@ public class Pool {
 
     public String getModel() {
         return this.model;
+    }
+
+    public String getPdf() {
+        return this.pdf;
     }
 
     public List<List<String>> getSizeDepth() {
@@ -94,13 +100,18 @@ public class Pool {
         this.model = model;
     }
 
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
+
     public Document toDocument() {
         Document document = new Document("name", this.getName())
             .append("description", this.getDescription())
             .append("tag", this.getTag())
             .append("sizeDepth", this.getSizeDepth())
             .append("image", this.getImage())
-            .append("model", this.getModel());
+            .append("model", this.getModel())
+            .append("pdf", this.getPdf());
         return document;
     }
 
@@ -113,6 +124,7 @@ public class Pool {
         pool.setSizeDepth((List<List<String>>) document.get("sizeDepth"));
         pool.setImage(document.getString("image"));
         pool.setModel(document.getString("model"));
+        pool.setPdf(document.getString("pdf"));
         return pool;
     }
 }

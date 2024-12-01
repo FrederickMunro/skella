@@ -17,6 +17,7 @@ interface Pool {
   sizeDepth: [string,string][];
   image: string;
   model: string;
+  pdf: string;
 }
 
 interface newPool {
@@ -28,6 +29,7 @@ interface newPool {
   prevImage: string;
   image: File | string |null;
   model: File | string | null;
+  pdf: File | null;
 }
 
 const PoolContainer = ({ pool, fetchPools }: Props) => {
@@ -44,6 +46,7 @@ const PoolContainer = ({ pool, fetchPools }: Props) => {
     prevImage: pool.image,
     image: null,
     model: null,
+    pdf: null,
   });
 
   const items: Item[] = [
@@ -78,6 +81,13 @@ const PoolContainer = ({ pool, fetchPools }: Props) => {
       placeholder: '',
       value: pool.model,
       setValue: (model: File | string) => setNewPool(prev => ({ ...prev, model }))
+    },
+    {
+      label: 'Blueprint',
+      type: 'pdf',
+      placeholder: '',
+      value: pool.pdf,
+      setValue: (pdf: File) => setNewPool(prev => ({ ...prev, pdf }))
     }
   ]
 
@@ -91,6 +101,9 @@ const PoolContainer = ({ pool, fetchPools }: Props) => {
     }
     if (newPool.model) {
       formData.append('model', newPool.model);
+    }
+    if (newPool.pdf) {
+      formData.append('pdf', newPool.pdf);
     }
 
     try {
@@ -132,12 +145,9 @@ const PoolContainer = ({ pool, fetchPools }: Props) => {
           />
           <h2 className='pools-container-title'>{pool.name}</h2>
           <p className='pools-container-desc'>{pool.description}</p>
-          <h3>Available sizes</h3>
-          {
-            pool.sizeDepth.map((item, index) => {
-              return <p key={index}>{`size: ${item[0]}, depth: ${item[1]}`}</p>
-            })
-          }
+          <a href={pool.pdf} target='_blank'>
+            <button className='pools-pool-detail-button'>Voir plus de details</button>
+          </a>
         </EditableComponent>
       </div>
     </div>

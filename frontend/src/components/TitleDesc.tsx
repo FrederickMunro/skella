@@ -66,7 +66,6 @@ const TitleDesc = ({ tag }: Props) => {
     fetchPageDetail();
   }, []);
 
-
   const submit = async () => {
     const formData = new FormData();
     formData.append('tag', pageDetail.tag);
@@ -93,7 +92,7 @@ const TitleDesc = ({ tag }: Props) => {
     } catch (err: any) {
         console.error(err);
     }
-};
+  };
 
   return(
     <EditableComponent items={items} submit={submit}>
@@ -102,7 +101,7 @@ const TitleDesc = ({ tag }: Props) => {
         <meta name='description' content={pageDetail.description} />
       </Helmet>
       <div className='titledesc-container'>
-        <img className='titledesc-img' src={pageDetail.image} />
+        { pageDetail.image && <img className='titledesc-img' src={pageDetail.image} /> }
         <h1 className='titledesc-title'>{pageDetail.title}</h1>
         { isAdmin && <p className='titledesc-desc'>{pageDetail.description}</p> }
       </div>

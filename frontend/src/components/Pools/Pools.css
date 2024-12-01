@@ -27,6 +27,7 @@
     align-items: center;
     width: 100%;
     flex-grow: 1;
+    background-color: var(--skella-light-blue);
   }
 
   .pools-pool-nested-info-container {
@@ -34,11 +35,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #001F3F;
-    color: white;
+    background-color: var(--skella-dark-blue);
     width: 90%;
-    margin: 4vw 0 4vw 0;
+    margin: 3rem 0;
     border-radius: 1rem;
+    border: 1px solid var(--skella-dark-blue);
   }
 
   .pools-title {
@@ -55,15 +56,17 @@
 
   .pools-container-title {
     font-size: 35px;
-    margin: 12vw 5rem 1rem 5rem;
+    margin: 5vw 5rem 2rem 5rem;
     align-self: flex-start;
     font-style: italic;
+    color: var(--skella-white);
   }
 
   .pools-container-desc {
     font-size: 20px;
     align-self: flex-start;
-    margin: 0 5rem 0 5rem
+    margin: 0 5rem 5rem 5rem;
+    color: var(--skella-white);
   }
 
   .pools-container-sizes {
@@ -195,8 +198,8 @@
     height: 25vw;
     position: absolute;
     top: 42vw;
-    align-self: flex-start;
-    margin-left: 2rem;
+    align-self: flex-end;
+    margin-right: 2rem;
   }
 
   .pools-container-lists {
@@ -342,6 +345,21 @@
 
   .edit-form-buttons button:hover {
     opacity: 0.9;
+  }
+
+  .pools-pool-detail-button {
+    margin: 0 0 3rem 0;
+    padding: 1rem 4rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    background-color: var(--skella-white);
+    color: var(--skella-dark-blue);
+  }
+
+  .pools-pool-detail-button:hover {
+    transform: scale(1.05);
   }
 }
 

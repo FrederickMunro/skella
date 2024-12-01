@@ -9,6 +9,7 @@ public class PageDetail {
   private String tag;
   private String title;
   private String description;
+  private String story;
   private String image;
 
   public PageDetail() {
@@ -18,7 +19,7 @@ public class PageDetail {
     this.image = null;
   }
 
-  public PageDetail(String tag, String title, String description, String image) {
+  public PageDetail(String tag, String title, String description, String image, String story) {
     this.tag = tag;
     this.title = title;
     this.description = description;
@@ -39,6 +40,10 @@ public class PageDetail {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public void setStory(String story) {
+    this.story = story;
   }
 
   public void setImage(String image) {
@@ -65,10 +70,15 @@ public class PageDetail {
     return this.image;
   }
 
+  public String getStory() {
+    return this.story;
+  }
+
   public Document toDocument() {
     return new Document("tag", this.getTag())
       .append("title", this.getTitle())
       .append("description", this.getDescription())
+      .append("story", this.getStory())
       .append("image", this.getImage());
   }
 
@@ -78,6 +88,7 @@ public class PageDetail {
     pageDetail.setTag(document.getString("tag"));
     pageDetail.setTitle(document.getString("title"));
     pageDetail.setDescription(document.getString("description"));
+    pageDetail.setStory(document.getString("story"));
     pageDetail.setImage(document.getString("image"));
     return pageDetail;
   }

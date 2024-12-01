@@ -1,0 +1,14 @@
+.contact-container {
+  background-color: var(--skella-light-blue);
+}
+
+.calendly-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100rem;
+}
+
+
+@media only screen and (max-width: 1024px) {
+}

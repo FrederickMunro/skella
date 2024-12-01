@@ -18,6 +18,7 @@ import Altea from "./components/Pools/Altea";
 import Evoa from "./components/Pools/Evoa";
 import Fluvia from "./components/Pools/Fluvia";
 import Collections from "./components/Pools/Collections";
+import Soumission from "./components/Soumission/Soumission";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <Pools />
+        <Collections />
         <Footer />
       </>
     )
@@ -96,6 +97,16 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Contact />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: '/soumission',
+    element: (
+      <>
+        <Header />
+        <Soumission />
         <Footer />
       </>
     )

@@ -12,6 +12,8 @@ interface Pool {
     description: string;
     sizeDepth: [string, string][];
     image: string;
+    model: string;
+    pdf: string;
 }
 
 interface newPool {
@@ -20,6 +22,8 @@ interface newPool {
   description: string;
   sizeDepth: [string, string][]
   image: string;
+  model: string;
+  pdf: string;
 }
 
 const Evoa = () => {
@@ -35,7 +39,9 @@ const Evoa = () => {
     tag: tagRec,
     description: '',
     sizeDepth: [],
-    image: ''
+    image: '',
+    model: '',
+    pdf: '',
   });
 
   const addPoolRecItems = [
@@ -65,17 +71,26 @@ const Evoa = () => {
       value: newRecPool.image,
       setValue: (image: string) => setNewRecPool(prev => ({ ...prev, image }))
     },
+    {
+      label: 'Model',
+      type: 'image',
+      value: newRecPool.model,
+      setValue: (model: string) => setNewRecPool(prev => ({ ...prev, model }))
+    },
   ]
 
   const submitRec = async () => {
-    console.log(newRecPool.sizeDepth)
-    console.log(JSON.stringify(newRecPool.sizeDepth))
     const formData = new FormData();
     formData.append('name', newRecPool.name);
     formData.append('description', newRecPool.description);
     formData.append('tag', tagRec);
-    formData.append('sizedepth', JSON.stringify(newRecPool.sizeDepth));
+    if (newRecPool.sizeDepth) {
+      formData.append('sizedepth', JSON.stringify(newPool.sizeDepth));
+    }
     if (newRecPool.image) {
+      formData.append('image', newRecPool.image);
+    }
+    if (newRecPool.model) {
       formData.append('image', newRecPool.image);
     }
 
@@ -97,7 +112,9 @@ const Evoa = () => {
     tag: tagCirc,
     description: '',
     sizeDepth: [],
-    image: ''
+    image: '',
+    model: '',
+    pdf: '',
   });
 
   const addPoolCircItems = [
@@ -127,17 +144,26 @@ const Evoa = () => {
       value: newCircPool.image,
       setValue: (image: string) => setNewCircPool(prev => ({ ...prev, image }))
     },
+    {
+      label: 'Model',
+      type: 'image',
+      value: newCircPool.model,
+      setValue: (model: string) => setNewCircPool(prev => ({ ...prev, model }))
+    },
   ]
 
   const submitCirc = async () => {
-    console.log(newCircPool.sizeDepth)
-    console.log(JSON.stringify(newCircPool.sizeDepth))
     const formData = new FormData();
     formData.append('name', newCircPool.name);
     formData.append('description', newCircPool.description);
     formData.append('tag', tagCirc);
-    formData.append('sizedepth', JSON.stringify(newCircPool.sizeDepth));
+    if (newCircPool.sizeDepth) {
+      formData.append('sizedepth', JSON.stringify(newCircPool.sizeDepth));
+    }
     if (newCircPool.image) {
+      formData.append('image', newCircPool.image);
+    }
+    if (newCircPool.model) {
       formData.append('image', newCircPool.image);
     }
 
@@ -159,7 +185,9 @@ const Evoa = () => {
     tag: tagCla,
     description: '',
     sizeDepth: [],
-    image: ''
+    image: '',
+    model: '',
+    pdf: '',
   });
 
   const addPoolClaItems = [
@@ -189,6 +217,12 @@ const Evoa = () => {
       value: newClaPool.image,
       setValue: (image: string) => setNewClaPool(prev => ({ ...prev, image }))
     },
+    {
+      label: 'Model',
+      type: 'image',
+      value: newClaPool.model,
+      setValue: (model: string) => setNewClaPool(prev => ({ ...prev, model }))
+    },
   ]
 
   const submitCla = async () => {
@@ -198,8 +232,13 @@ const Evoa = () => {
     formData.append('name', newClaPool.name);
     formData.append('description', newClaPool.description);
     formData.append('tag', tagCla);
-    formData.append('sizedepth', JSON.stringify(newClaPool.sizeDepth));
+    if (newClaPool.sizeDepth) {
+      formData.append('sizedepth', JSON.stringify(newClaPool.sizeDepth));
+    }
     if (newClaPool.image) {
+      formData.append('image', newClaPool.image);
+    }
+    if (newClaPool.model) {
       formData.append('image', newClaPool.image);
     }
 

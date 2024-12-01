@@ -29,11 +29,19 @@ const MenuItem = ({ title, url, items, handlemenuclick }: Props) => {
     <>
       {
         items ? (
-          <div onClick={() => handleItemsClick()}>
-            <a className='header-menu-item'>
-              {title}
-              <span className={`arrow-icon ${menuState === 'open' ? 'arrow-open' : 'arrow-closed'}`}></span>
-            </a>
+          <div>
+            <div className='header-menu-dropdown-link'>
+              <Link
+                to={url}
+                className='header-menu-item split-dropdown'
+                onClick={() => handlemenuclick()}
+              >
+                {title}
+              </Link>
+              <button onClick={() => handleItemsClick()} className={`dropdown-toggle ${menuState === 'open' ? 'rotated' : ''}`} aria-expanded="false">
+                ►
+              </button> 
+            </div>
             <div className={`header-menu-items-container menu-items-${menuState}`}>
               {
                 items.map((item: MenuItemType, index) => (

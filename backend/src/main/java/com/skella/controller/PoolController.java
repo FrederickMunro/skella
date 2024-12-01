@@ -15,7 +15,6 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,8 +71,9 @@ class PoolController {
             pool.put("name", doc.getString("name"));
             pool.put("description", doc.getString("description"));
             pool.put("tag", doc.getString("tag"));
-            pool.put("image", doc.getString("image"));
-            pool.put("model", doc.getString("model"));
+            pool.put("image", publicEndpoint + "/" + doc.getString("image"));
+            pool.put("model", publicEndpoint + "/" + doc.getString("model"));
+            pool.put("sizeDepth", doc.getList("sizeDepth", List.class));
             pools.add(pool);
         });
 
@@ -88,7 +88,8 @@ class PoolController {
             @RequestParam(value = "tag", required = true) String tag,
             @RequestParam(value = "sizedepth", required = false) String sizeDepth,
             @RequestParam(value = "image", required = false) MultipartFile imageFile,
-            @RequestParam(value = "model", required = false) MultipartFile modelFile) {
+            @RequestParam(value = "model", required = false) MultipartFile modelFile,
+            @RequestParam(value = "file", required = false) MultipartFile pdfFile) {
         try {
             // Validate mandatory parameters
             if (tag == null || tag.isEmpty()) {
@@ -141,6 +142,29 @@ class PoolController {
                     Files.deleteIfExists(tempFile);
                 }
             }
+
+            String pdfPath = null;
+            if (pdfFile != null && !pdfFile.isEmpty()) {
+                // Generate a unique key for the uploaded file
+                String key = "pdf/" + UUID.randomUUID() + "-" + pdfFile.getOriginalFilename();
+    
+                // Create a temporary file
+                Path tempFile = Files.createTempFile("pdf-", pdfFile.getOriginalFilename());
+    
+                try {
+                    // Transfer the MultipartFile to the temporary file
+                    pdfFile.transferTo(tempFile);
+    
+                    // Upload to Cloudflare R2
+                    r2UploadService.uploadFile(bucketName, key, tempFile);
+    
+                    // Construct the public URL
+                    pdfPath = String.format(key);
+                } finally {
+                    // Clean up the temporary file
+                    Files.deleteIfExists(tempFile);
+                }
+            }
     
             // Parse sizeDepth JSON into List<List<String>>
             List<List<String>> sizeDepthArray = null;
@@ -154,7 +178,7 @@ class PoolController {
             }
     
             // Create the Pool object
-            Pool pool = new Pool(name, description, tag, sizeDepthArray, imagePath, modelPath);
+            Pool pool = new Pool(name, description, tag, sizeDepthArray, imagePath, modelPath, pdfPath);
     
             // Save the Pool object to MongoDB
             MongoDatabase database = mongoClient.getDatabase("skella");
@@ -208,7 +232,8 @@ class PoolController {
             @RequestParam(value = "description", required = false) String description,
             @RequestParam(value = "sizedepth", required = false) String sizeDepthJson,
             @RequestParam(value = "image", required = false) MultipartFile imageFile,
-            @RequestParam(value = "model", required = false) MultipartFile modelFile) {
+            @RequestParam(value = "model", required = false) MultipartFile modelFile,
+            @RequestParam(value = "pdf", required = false) MultipartFile pdfFile) {
 
         MongoDatabase database = mongoClient.getDatabase("skella");
         MongoCollection<Document> collection = database.getCollection("pools");
@@ -313,6 +338,39 @@ class PoolController {
                 }
             }
 
+            if (pdfFile != null && !pdfFile.isEmpty()) {
+                // Delete old image from Cloudflare R2
+                String oldPdfPath = existingPool.getString("model");
+                if (oldPdfPath != null && !oldPdfPath.isEmpty()) {
+                    // Extract the key from the URL
+                    String oldKey = oldPdfPath;
+                    r2UploadService.deleteFile(bucketName, oldKey);
+                }
+
+                // Generate a unique key for the new uploaded file
+                String key = "pdf/" + UUID.randomUUID() + "-" + pdfFile.getOriginalFilename();
+
+                // Create a temporary file
+                Path tempFile = Files.createTempFile("pdf-", pdfFile.getOriginalFilename());
+
+                try {
+                    // Transfer the MultipartFile to the temporary file
+                    pdfFile.transferTo(tempFile);
+
+                    // Upload to Cloudflare R2
+                    r2UploadService.uploadFile(bucketName, key, tempFile);
+
+                    // Construct the public URL
+                    String pdfPath = String.format(key);
+
+                    // Add the new image URL to the update document
+                    updateDoc.append("pdf", pdfPath);
+                } finally {
+                    // Clean up the temporary file
+                    Files.deleteIfExists(tempFile);
+                }
+            }
+
             // Update the pool in MongoDB
             collection.updateOne(query, new Document("$set", updateDoc));
 
@@ -345,6 +403,8 @@ class PoolController {
                 pool.put("image", imagePath);
                 String modelPath = publicEndpoint + "/" + doc.getString("model");
                 pool.put("model", modelPath);
+                String pdfPath = publicEndpoint + "/" + doc.getString("pdf");
+                pool.put("pdf", pdfPath);
                 pool.put("sizeDepth", doc.get("sizeDepth"));
                 pools.add(pool);
             });

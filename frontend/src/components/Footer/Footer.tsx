@@ -1,22 +1,29 @@
 import { SocialIcon } from 'react-social-icons';
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaFax } from 'react-icons/fa';
+import rinoxIcon from '../../assets/images/logo-rinoxgroup-fr.png';
 
 import './Footer.css';
 
 const Footer = () => {
 
-    const socialsColor = 'black';
+    const socialsColor = '#c9def5';
 
     return(
         <div className='footer-container'>
             <div className='footer-container-left'>
                 <h3>Contactez-nous</h3>
                 <div className='footer-contact-div'>
-                    <a className='footer-contact-link' href='+15141111111'>
+                    <a className='footer-contact-link' href='+15147023344'>
                         <FaPhone className='footer-contact-icon'/>
-                        <p>+1 (515) 111-1111</p>
+                        <p>+1 (514) 702-3344</p>
                     </a>
                 </div>
+                {/* <div className='footer-contact-div'>
+                    <a className='footer-contact-link'>
+                        <FaFax className='footer-contact-icon'/>
+                        <p>+1 (450) 447-2950</p>
+                    </a>
+                </div> */}
                 <div className='footer-contact-div'>
                     <a className='footer-contact-link' href='mailto:Test@test.ca'>
                         <FaEnvelope className='footer-contact-icon'/>
@@ -50,8 +57,14 @@ const Footer = () => {
                     />
                 </div>
             </div>
-            <div>
-                <p>A division of groupe Rinox</p>
+            <div className='footer-container-right'>
+                <a href='https://rinoxgroup.com/' target='_blank'>
+                    <img src={rinoxIcon}/>
+                </a>
+                <div>
+                    <p>&nbsp;Une division du&nbsp;</p>
+                    <p>Groupe Rinox&nbsp;</p>
+                </div>
             </div>
         </div>
     )

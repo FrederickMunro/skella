@@ -1,0 +1,287 @@
+.soumission-pools {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  overflow: hidden;
+  transition: max-height 0.4s ease; 
+}
+
+.soumission-pools.expanded {
+  max-height: 500rem;
+}
+
+.soumission-pools.collapsed {
+  max-height: 0;
+}
+
+.soumission-pool-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  flex-grow: 1;
+  border-radius: 1rem;
+  border: 2px solid var(--skella-dark-blue);
+  min-width: 20rem;
+  max-width: 30rem;
+}
+
+.soumission-pool-container:hover {
+  transform: scale(1.02); /* Slight zoom effect */
+  transition: transform 0.2s ease-in-out; /* Smooth transition */
+  cursor: pointer;
+}
+
+.pool-is-selected {
+  border: 2px solid var(--skella-dark-blue); /* Highlighted border color */
+  box-shadow: 0 0 10px var(--skella-dark-blue), 0 0 20px var(--skella-dark-blue); /* Add glowing effect */
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Smooth transition */
+  opacity: 1; /* Fully visible when selected */
+}
+
+.pool-isnt-selected {
+  opacity: 0.85; /* Slightly dim the non-selected pools */
+  transition: opacity 0.3s ease;
+}
+
+.toggle-icon {
+  position: absolute;
+  left: 1.5rem;
+  margin-top: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Horizontal Line */
+.toggle-icon::before,
+.toggle-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--skella-dark-blue);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Horizontal Line */
+.toggle-icon::before {
+  width: 100%;
+  height: 4px;
+  transform: rotate(0deg); /* Default state */
+}
+
+/* Vertical Line */
+.toggle-icon::after {
+  width: 4px;
+  height: 100%;
+  transform: rotate(0deg); /* Default state */
+}
+
+/* Collapsed (to -) */
+.toggle-icon.collapsed::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* Expanded (to +) */
+.toggle-icon.expanded::after {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+.soumission-choix-piscines {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0 5rem 1rem 5rem;
+  font-family: 'Roboto', sans-serif;
+  color: var(--skella-dark-blue);
+  font-weight: bold;
+  user-select: none;
+}
+
+.soumission-choix-box {
+  cursor: pointer;
+  padding: 3rem 0 2rem 0;
+}
+
+.soumission-choix-choix {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 0;
+  user-select: none;
+}
+
+.soumission-pool-container {
+  margin: 2rem 0 2rem 0;
+}
+
+.pool-selection {
+  display: none;
+}
+
+.checkbox-soumission {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 1rem 1rem 0 0;
+  width: 24px;
+  height: 24px;
+  color: var(--skella-white);
+  background-color: var(--skella-white);
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Selected state with green background and white checkmark */
+.checkbox-soumission-check {
+  background-color: green;
+  color: white;
+}
+
+/* .pool-selection + label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--skella-dark-blue);
+  border-radius: 4px;
+  background-color: white;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.pool-selection:checked + label::after {
+  content: '✔';
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #4caf50;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #4caf50;
+} */
+
+.soumission-pool-image {
+  width: 95%;
+}
+
+.soumission-pool-title {
+  font-size: 4rem;
+  margin: 2rem 0 2rem 0;
+}
+
+.soumission-pool-size {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  font-size: 2rem;
+}
+
+.soumission-pool-sizes {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+}
+
+.soumission-pool-prof {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.soumission-sizelist {
+  margin: 0;
+}
+
+/* Container Styles */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+  padding: 2rem;
+  background-color: var(--skella-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Form Styles */
+.nice-form h2 {
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+  font-size: 1.4rem;
+}
+
+/* Inputs and Selects */
+input, select {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1.3rem;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Focus State: Match the Glow Effect */
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--skella-dark-blue); /* Match the dark blue color */
+  box-shadow: 0 0 2px var(--skella-dark-blue), 0 0 2px var(--skella-dark-blue); /* Glowing effect */
+}
+
+/* Flex Row for Multiple Inputs */
+.flex-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex-row input, .flex-row select {
+  flex: 1;
+}
+
+/* Submit Button */
+.submit-button {
+  background-color: #003d66;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 0.05rem;
+  transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Submit Button Hover */
+.submit-button:hover {
+  background-color: var(--skella-dark-blue);
+  box-shadow: 0 0 2px var(--skella-dark-blue), 0 0 2px var(--skella-dark-blue); /* Glowing effect */
+}

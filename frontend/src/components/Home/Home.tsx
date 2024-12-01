@@ -10,12 +10,10 @@ const Home = () => {
   return (
     <div className='home-container'>
       <HomeVideo />
-      {/* <h2>Un service impeccable</h2>
-      <p>Groupe Skella vous offre des services cles en main d'installations de piscines, d'amenagement paysager, et d'excavations.</p> */}
       <div className='home-section'>
-        <SectionDesc tag='piscines-sec' />
-        <ServiceSection name='Piscines' description='Decouvrez nos collections' link='/collections' video={videopiscines} />
-        <ServiceSection name='Amenagements' description='Voir nos projets' link='./amenagements' video={videoamenagements} />
+        <SectionDesc tag='piscines-sec' className='background-left-right' />
+        <ServiceSection name='Piscines' description='Plongez dans nos collections' link='/collections' video={videopiscines} />
+        <ServiceSection name='Amenagements' description='Inspirez-vous' link='./amenagements' video={videoamenagements} />
         <ServiceSection name='Excavations' description='Voir nos projets' link='./excavations' video={videoexcavations} />
       </div>
       <div className='home-section'>

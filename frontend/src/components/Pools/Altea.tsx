@@ -13,6 +13,7 @@ interface Pool {
     sizeDepth: [string, string][];
     image: string;
     model: string;
+    pdf: string;
 }
 
 interface newPool {
@@ -22,6 +23,7 @@ interface newPool {
   sizeDepth: [string, string][]
   image: string;
   model: string;
+  pdf: string;
 }
 
 const Altea = () => {
@@ -39,16 +41,17 @@ const Altea = () => {
     sizeDepth: [],
     image: '',
     model: '',
+    pdf: '',
   });
 
   const fetchPools = async () => {
-      try {
-          const res = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/${tag}`); 
-          setPools(res.data);
-          console.log(res.data);
-      } catch (err) {
-          
-      }
+    try {
+      const res = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/${tag}`); 
+      setPools(res.data);
+      console.log(res.data);
+    } catch (err) {
+        
+    }
   };
 
   const addPoolItems = [
@@ -79,15 +82,14 @@ const Altea = () => {
       setValue: (image: string) => setNewPool(prev => ({ ...prev, image }))
     },
     {
-      label: 'Image',
+      label: 'Model',
       type: 'image',
-      value: newPool.image,
+      value: newPool.model,
       setValue: (model: string) => setNewPool(prev => ({ ...prev, model }))
     },
   ]
 
   const submit = async () => {
-    console.log(newPool)
     const formData = new FormData();
     formData.append('tag', tag);
     formData.append('name', newPool.name);

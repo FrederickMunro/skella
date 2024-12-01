@@ -4,6 +4,7 @@ import './Header.css';
 
 import Hamburger from './Hamburger';
 import MenuItem from './MenuItem';
+import { FcPositiveDynamic } from 'react-icons/fc';
 
 interface Props {
   menustate: string;
@@ -17,10 +18,6 @@ const Menu = ({ menustate, menuclick}: Props) => {
       title: 'Piscines',
       url: '/piscines',
       items: [
-        {
-          title: 'Collections',
-          url: '/collections'
-        },
         {
           title: 'Altea',
           url: '/altea'
@@ -45,11 +42,6 @@ const Menu = ({ menustate, menuclick}: Props) => {
       url: '/excavations',
       items: null
     },
-    // {
-    //   title: 'Portfolio',
-    //   url: '/portfolio',
-    //   items: null
-    // },
     {
       title: 'L\'Expérience Skella',
       url: '/experience',
@@ -65,6 +57,11 @@ const Menu = ({ menustate, menuclick}: Props) => {
       url: '/contact',
       items: null
     },
+    {
+      title: 'Soumission',
+      url: '/soumission',
+      items: null
+    },
   ]
 
   return(
@@ -78,11 +75,6 @@ const Menu = ({ menustate, menuclick}: Props) => {
             })
           }
         </nav>
-        {/* <div className='contact-socials'>
-          
-          <SocialMedia fgColor='black' bgColor='transparent'/>
-          <ContactButton />
-        </div> */}
       </div>
     </>
   );

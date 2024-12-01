@@ -1,0 +1,79 @@
+/* Blog Post Container */
+.blog-post {
+  width: 80%;
+  margin: 3rem auto;
+  background-color: var(--skella-white);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  border: 1px solid var(--skella-dark-blue);
+}
+
+/* Blog Post Image */
+.blog-post-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Blog Post Header */
+.blog-post-header {
+  margin: 1rem 0;
+}
+
+.blog-post-title {
+  font-size: 2.7rem;
+  font-weight: bold;
+  margin: 0.5rem 4rem;
+  color: var(--skella-dark-blue);
+}
+
+.blog-post-description {
+  font-size: 1.7rem;
+  color: var(--skella-dark-blue);
+  margin: 1rem 4rem 0 4rem;
+}
+
+/* Story Section */
+.blog-post-story {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin: 1rem 2rem 0 2rem;
+  font-size: 1.5rem;
+}
+
+.blog-post-story > p {
+  line-height: 1.4;
+  text-align: left;
+}
+
+.blog-post-story.collapsed {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+.blog-post-story.expanded {
+  max-height: 100rem; /* Adjust this based on your needs */
+  opacity: 1;
+}
+
+/* Expand/Collapse Button */
+.blog-post-toggle {
+  margin: 2rem 0;
+  padding: 0.5rem 1.5rem;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.blog-post-toggle:hover {
+  background-color: var(--skella-dark-blue);
+}

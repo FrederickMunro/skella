@@ -7,6 +7,9 @@
   --secondary-color: black;
   --skella-blue: blue;
   --skella-grey: grey;
+  --skella-white: #eeeeee;
+  --skella-light-blue: #c9def5;
+  --skella-dark-blue: #00142d;
 }
 
 body {
@@ -17,6 +20,38 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+}
+
+.skella-white-color {
+  color: var(--skella-white);
+}
+
+.skella-white-background {
+  background-color: var(--skella-white);
+}
+
+.skella-light-blue-color {
+  color: var(--skella-light-blue);
+}
+
+.skella-light-blue-background {
+  background-color: var(--skella-light-blue);
+}
+
+.skella-dark-blue-color {
+  color: var(--skella-dark-blue);
+}
+
+.skella-dark-blue-background {
+  background-color: var(--skella-dark-blue);
+}
+
+.main-color {
+  color: var(--main-color);
+}
+
+.main-color-background {
+  background-color: var(--main-color);
 }
 
 .main-color {

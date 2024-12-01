@@ -90,6 +90,20 @@ const EditModal = ({ items, submit, remove, close }: Props) => {
                         })
                     }
                 </div>
+            case 'pdf':
+                return <div className='edit-modal-image-container'>
+                    <input
+                        className='edit-modal-image'
+                        type='file'
+                        accept='application/pdf'
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                                item.setValue(file);
+                            }
+                        }}
+                    />
+                </div>
             default:
                 return null;
         }
