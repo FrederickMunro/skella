@@ -10,6 +10,11 @@
   flex-direction: column;
 }
 
+.collections-container {
+  display: flex;
+  flex-direction: column;
+}
+
 @media only screen and (max-width: 767px) {
   .pools-pool-container {
     display: flex;

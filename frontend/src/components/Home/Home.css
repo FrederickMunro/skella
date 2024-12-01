@@ -11,7 +11,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  height: calc(100vh - min(9rem, max(15vw, 7rem)));
+  height: calc(100vh - min(9rem, max(15vw, 6rem)));
 }
 
 .home-video {
@@ -28,7 +28,7 @@
 }
 
 .home-video-title {
-  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: 100;
   font-style: italic;
   font-size: min(6rem, max(12vw, 4rem));
@@ -38,8 +38,8 @@
 }
 
 .home-video-subtitle {
-  font-family:  'Impact', 'Arial Black', sans-serif;
-  font-weight: 100;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
   font-style: italic;
   font-size: min(3.5rem, max(8vw, 2rem));
   letter-spacing: 0.5px;
@@ -62,8 +62,8 @@
 }
 
 .home-date-text {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
   font-size: 20px;
   font-size: min(2rem, max(5vw, 1rem));
   margin: 0;

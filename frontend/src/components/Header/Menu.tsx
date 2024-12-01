@@ -19,15 +19,15 @@ const Menu = ({ menustate, menuclick}: Props) => {
       url: '/piscines',
       items: [
         {
-          title: 'Altea',
+          title: 'Collection Altea',
           url: '/altea'
         },
         {
-          title: 'Evoa',
+          title: 'Collection Evoa',
           url: '/evoa'
         },
         {
-          title: 'Fluvia',
+          title: 'Collection Fluvia',
           url: '/fluvia'
         }
       ]
@@ -53,13 +53,13 @@ const Menu = ({ menustate, menuclick}: Props) => {
       items: null
     },
     {
-      title: 'Contact',
-      url: '/contact',
+      title: 'Soumission',
+      url: '/soumission',
       items: null
     },
     {
-      title: 'Soumission',
-      url: '/soumission',
+      title: 'Contact',
+      url: '/contact',
       items: null
     },
   ]

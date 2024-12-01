@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 
-import CompanyLogo from '../../assets/logo-excavations-skella-large.png';
+import CompanyLogo from '../../assets/images/SKELLA shaded.jpg';
 import Menu from './Menu';
 import { useEffect, useState } from 'react';
 
@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <>
       { isAdmin && <p className='admin-mode'>ADMIN MODE</p> }
-      <div className='header-container main-color-background'>
+      <div className='header-container'>
         <Link
           to='/'
           onClick={() => handleHomeClick()}

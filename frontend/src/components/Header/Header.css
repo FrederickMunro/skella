@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 4;
+  background-color: white;
 }
 
 .header-home-logo {
@@ -51,12 +53,12 @@
 
 @media only screen and (max-width: 767px) {
   .header-container {
-    min-height: min(9rem, max(15vw, 7rem));
-    max-height: min(9rem, max(15vw, 7rem));
+    min-height: min(9rem, max(15vw, 6rem));
+    max-height: min(9rem, max(15vw, 6rem));
   }
 
   .header-home-logo-container {
-    height: 55%;
+    height: 60%;
     display: flex;
   }
 
@@ -74,10 +76,10 @@
     align-items: center;
     justify-content: space-around;
     position: fixed;
-    height: calc(100vh - min(9rem, max(15vw, 7rem)));
+    height: calc(100vh - min(9rem, max(15vw, 6rem)));
     right: 0;
     padding-top: 2rem;
-    top: min(9rem, max(15vw, 7rem));
+    top: min(9rem, max(15vw, 6rem));
     transition: width 0.3s ease;
     z-index: 1;
     background-color: white;

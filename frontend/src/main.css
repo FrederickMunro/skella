@@ -93,3 +93,9 @@ button {
 a {
   cursor: pointer;
 }
+
+.rouge-script-regular {
+  font-family: "Rouge Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}

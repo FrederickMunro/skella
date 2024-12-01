@@ -9,7 +9,6 @@ const HomeVideo = () => {
         Your browser does not support video.
       </video>
       <div className='home-video-text-container'>
-        <h1 className='home-video-title'>GROUPE SKELLA</h1>
         <h2 className='home-video-subtitle'>Piscines de rêve et aménagements paysagers haut de gamme à Montréal</h2>
         <div className='home-date-container'>
           <div className='home-date-line' />
