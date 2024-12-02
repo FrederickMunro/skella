@@ -4,6 +4,7 @@ import ServiceSection from "../Home/ServiceSection";
 import TitleDesc from "../TitleDesc";
 
 import video from '../../assets/videos/poolvid1.mp4';
+import Colors from "./Colors";
 
 
 const Collections = () => {
@@ -12,9 +13,10 @@ const Collections = () => {
     return (
         <div className='collections-container'>
             <TitleDesc tag={tag} />
-        <ServiceSection name='Collection Altea' description='Plongez dans nos collections' link='/altea' video={video} />
-        <ServiceSection name='Collection Evoa' description='Inspirez-vous' link='/evoa' video={video} />
-        <ServiceSection name='Collection Fluvia' description='Voir nos projets' link='/fluvia' video={video} />
+            <Colors />
+            <ServiceSection name='Collection Altea' description='Plongez dans nos collections' link='/altea' video={video} />
+            <ServiceSection name='Collection Evoa' description='Inspirez-vous' link='/evoa' video={video} />
+            <ServiceSection name='Collection Fluvia' description='Voir nos projets' link='/fluvia' video={video} />
         </div>
     );
 }

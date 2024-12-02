@@ -5,6 +5,7 @@ import BlogPost from './BlogPost';
 import EditModal, { Item } from '../Edit/EditModal';
 
 import './Blog.css';
+import ItemContainer from '../ItemContainer';
 
 interface PageDetail {
   id: string;
@@ -97,16 +98,18 @@ const Blog = () => {
   
   
   return(
-    <div className='skella-light-blue-background'>
-      <TitleDesc tag={'blog'}/>
-      {pageDetails.map((blog, index) => {
-        return <BlogPost fetch={fetchPageDetails} blog={blog} tag={tag} key={index} />
-      })}
-      {isAdmin &&
-        <button onClick={() => {isAdmin && setIsModalOpen(true)}}>Add new blog</button>}
-      {isAdmin && isModalOpen &&
-      <EditModal items={items} submit={submit} close={() => setIsModalOpen(false)} />}
-    </div>
+      <div className='skella-light-blue-background'>
+        <ItemContainer>
+          <TitleDesc tag={'blog'}/>
+        </ItemContainer>
+        {pageDetails.map((blog, index) => {
+          return <BlogPost fetch={fetchPageDetails} blog={blog} tag={tag} key={index} />
+        })}
+        {isAdmin &&
+          <button onClick={() => {isAdmin && setIsModalOpen(true)}}>Add new blog</button>}
+        {isAdmin && isModalOpen &&
+        <EditModal items={items} submit={submit} close={() => setIsModalOpen(false)} />}
+      </div>
   )
 }
 

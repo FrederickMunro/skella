@@ -5,6 +5,7 @@ import { Item } from '../Edit/EditModal';
 import axios from 'axios';
 
 import './Blog.css';
+import ItemContainer from '../ItemContainer';
 
 interface PageDetail {
   id: string;
@@ -112,30 +113,32 @@ const BlogPost = ({ blog, fetch }: Props) => {
   }
 
   return(
-    <div className="blog-post">
-      <EditableComponent items={items} submit={submit} remove={remove}>
-        {/* Image */}
-        <img className="blog-post-image" src={blog.image} alt={blog.title} />
+    <ItemContainer>
+      <div className="blog-post">
+        <EditableComponent items={items} submit={submit} remove={remove}>
+          {/* Image */}
+          <img className="blog-post-image" src={blog.image} alt={blog.title} />
 
-        {/* Title and Subtitle */}
-        <div className="blog-post-header">
-          <h2 className="blog-post-title">{blog.title}</h2>
-          <h3 className="blog-post-description">{blog.description}</h3>
-        </div>
+          {/* Title and Subtitle */}
+          <div className="blog-post-header">
+            <h2 className="blog-post-title">{blog.title}</h2>
+            <h3 className="blog-post-description">{blog.description}</h3>
+          </div>
 
-        {/* Story with Expand/Collapse */}
-        <div className={`blog-post-story ${isExpanded ? "expanded" : "collapsed"}`}>
-          {blog.story.split('\n').map((paragraph,index) => {
-            return <p key={index}>{paragraph}</p>
-          })}
-        </div>
+          {/* Story with Expand/Collapse */}
+          <div className={`blog-post-story ${isExpanded ? "expanded" : "collapsed"}`}>
+            {blog.story.split('\n').map((paragraph,index) => {
+              return <p key={index}>{paragraph}</p>
+            })}
+          </div>
 
-        {/* Expand/Collapse Button */}
-        <button className="blog-post-toggle" onClick={toggleExpand}>
-          {isExpanded ? "Lire moins" : "Lire plus"}
-        </button>
-      </EditableComponent>
-    </div>
+          {/* Expand/Collapse Button */}
+          <button className="blog-post-toggle" onClick={toggleExpand}>
+            {isExpanded ? "Lire moins" : "Lire plus"}
+          </button>
+        </EditableComponent>
+      </div>
+    </ItemContainer>
   );
 }
 

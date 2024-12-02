@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import EditableComponent from './Edit/EditableComponent';
 import { Item } from './Edit/EditModal';
+import { useInView } from "react-intersection-observer";
 
 import './PageContainer.css';
 
@@ -19,6 +20,10 @@ interface Props {
 }
 
 const TitleDesc = ({ tag }: Props) => {
+  const { ref, inView } = useInView({
+  threshold: 0.1,
+  triggerOnce: true,
+});
   const apiUrl = import.meta.env.VITE_API_URL as string;
 
   const isAdmin = import.meta.env.VITE_IS_ADMIN === 'true';

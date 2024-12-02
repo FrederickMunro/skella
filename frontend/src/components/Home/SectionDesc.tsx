@@ -5,6 +5,7 @@ import EditableComponent from '../Edit/EditableComponent';
 import { Item } from '../Edit/EditModal';
 
 import './Home.css';
+import ItemContainer from '../ItemContainer';
 
 interface PageDetail {
   id: string;
@@ -76,12 +77,14 @@ const SectionDesc = ({ tag, className }: Props) => {
   }
 
   return(
-    <EditableComponent items={items} submit={submit}>
-      <div className={className}>
-        <h1 className='home-section-title'>{pageDetail.title}</h1>
-        <p className='home-section-desc'>{pageDetail.description}</p>
-      </div>
-    </EditableComponent>
+    <ItemContainer>
+      <EditableComponent items={items} submit={submit}>
+        <div className={className}>
+          <h1 className='home-section-title'>{pageDetail.title}</h1>
+          <p className='home-section-desc'>{pageDetail.description}</p>
+        </div>
+      </EditableComponent>
+    </ItemContainer>
   )
 }
 

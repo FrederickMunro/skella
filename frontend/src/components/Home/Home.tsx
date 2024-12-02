@@ -5,21 +5,28 @@ import videopiscines from '../../assets/videos/homepage_video.mp4';
 import videoamenagements from '../../assets/videos/amenagements.mp4';
 import videoexcavations from '../../assets/videos/excavations.mp4';
 import SectionDesc from './SectionDesc';
+import ContentContainer from '../ContentContainer';
+import Review from './Review';
+import Reviews from './Reviews';
 
 const Home = () => {
+  // Use object destructuring, so you don't need to remember the exact order
   return (
-    <div className='home-container'>
+    <ContentContainer>
       <HomeVideo />
       <div className='home-section'>
-        <SectionDesc tag='piscines-sec' className='background-left-right' />
+        <SectionDesc tag='piscines-sec' className='background-sand-to-blue' />
         <ServiceSection name='Piscines' description='Plongez dans nos collections' link='/collections' video={videopiscines} />
         <ServiceSection name='Amenagements' description='Inspirez-vous' link='./amenagements' video={videoamenagements} />
         <ServiceSection name='Excavations' description='Voir nos projets' link='./excavations' video={videoexcavations} />
       </div>
       <div className='home-section'>
-        <SectionDesc tag='experience-sec' />
+        <SectionDesc tag='experience-sec' className='background-blue-to-sand'/>
       </div>
-    </div>
+      <div className='background-blue-to-sand'>
+        <Reviews />
+      </div>
+    </ContentContainer>
   )
 }
 

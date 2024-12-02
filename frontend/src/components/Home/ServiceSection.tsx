@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import './Home.css';
+import ItemContainer from "../ItemContainer";
 
 interface Props {
   name: string;
@@ -30,30 +31,32 @@ const ServiceSection = ({ name, description, link, video }: Props) => {
   };
 
   return(
-      <div
-        className={`home-service-section home-service-section-${isHovered ? '': 'not'}hovered`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <video
-          className='home-service-video'
-          ref={videoRef}
-          src={video}
-          muted
-          loop
-        />
-
-        <div className='home-service-dark-overlay' />
-
-        <Link
-          to={link}
-          className='home-service-content'
+    <ItemContainer>
+        <div
+          className={`home-service-section home-service-section-${isHovered ? '': 'not'}hovered`}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          <h2 className='home-service-title'>{name.toUpperCase()}</h2>
-          <p className='home-service-description'>{description}</p>
-          
-        </Link>
-      </div>
+          <video
+            className='home-service-video'
+            ref={videoRef}
+            src={video}
+            muted
+            loop
+          />
+
+          <div className='home-service-dark-overlay' />
+
+          <Link
+            to={link}
+            className='home-service-content'
+          >
+            <h2 className='home-service-title'>{name.toUpperCase()}</h2>
+            <p className='home-service-description'>{description}</p>
+            
+          </Link>
+        </div>
+    </ItemContainer>
   );
 }
 

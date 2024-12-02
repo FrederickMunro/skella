@@ -137,7 +137,7 @@
   width: 100%;
 }
 
-.background-left-right {
+.background-blue-to-sand {
   width: 100%;
   background: linear-gradient(
     to bottom right,
@@ -146,6 +146,89 @@
     #ffffff 60%,
     rgba(215, 190, 165, 0.8)
   );
+}
+
+.background-sand-to-blue {
+  width: 100%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(215, 190, 165, 0.8),
+    #ffffff 30%,
+    #ffffff 60%,
+    rgba(74, 163, 224, 0.5)
+  );
+}
+
+.background-to-blue {
+  width: 100%;
+  background: linear-gradient(
+    to bottom right,
+    #ffffff 60%,
+    rgba(74, 163, 224, 0.5)
+  );
+}
+
+.review-container {
+  max-width: 400px;
+  padding: 20px;
+  margin: 10px auto;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reviewer-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.reviews-title {
+  font-size: 3rem;
+  text-align: center;
+  margin: 2rem 2rem 1rem 2rem;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  font-size: 20px;
+  margin-right: 3px;
+  color: #fbc02d; /* Gold for stars */
+}
+
+.review-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.review-date {
+  font-size: 1.4rem;
+  color: #555;
+  text-align: end;
+  margin: 1rem 3rem;
 }
 
 @media only screen and (max-width: 1024px) {

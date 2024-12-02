@@ -101,7 +101,7 @@ const Altea = () => {
       formData.append('image', newPool.image);
     }
     if (newPool.model) {
-      formData.append('image', newPool.image);
+      formData.append('model', newPool.model);
     }
 
     try {

@@ -94,8 +94,16 @@ a {
   cursor: pointer;
 }
 
-.rouge-script-regular {
-  font-family: "Rouge Script", cursive;
-  font-weight: 400;
-  font-style: normal;
+.inview-container {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.hidden {
+  transform: translateY(10rem);
+  opacity: 0;
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
 }

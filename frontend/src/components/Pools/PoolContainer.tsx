@@ -3,6 +3,7 @@ import './Pools.css';
 import EditableComponent from '../Edit/EditableComponent';
 import { Item } from '../Edit/EditModal';
 import axios from 'axios';
+import { useInView } from "react-intersection-observer";
 
 interface Props {
   pool: Pool;
@@ -33,9 +34,12 @@ interface newPool {
 }
 
 const PoolContainer = ({ pool, fetchPools }: Props) => {
+  const { ref, inView } = useInView({
+  threshold: 0.1,
+  triggerOnce: true,
+});
 
   const apiUrl = import.meta.env.VITE_API_URL as string;
-  const isAdmin = import.meta.env.VITE_IS_ADMIN === 'true';
 
   const [newPool, setNewPool] = useState<newPool>({
     id: pool.id,
@@ -131,7 +135,10 @@ const PoolContainer = ({ pool, fetchPools }: Props) => {
 
   return (
     <div className='pools-pool-info-container main-color-background'>
-      <div className='pools-pool-nested-info-container'>
+      <div
+        ref={ref}
+        className={`pools-pool-nested-info-container inview-container ${inView ? "visible" : "hidden"}`}
+      >
         <EditableComponent items={items} submit={submit} remove={remove}>
           <img
             src={pool.image}
