@@ -48,7 +48,8 @@
 .arrow {
   color: #F4A460;
   font-size: 1rem;
-  margin-left: calc(50% - 12px);
+  left: 50%;
+  transform: translateX(-75%);
   pointer-events: none; /* Prevent arrows from blocking dragging */
 }
 
@@ -162,6 +163,7 @@
   .pools-pool-container {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
   }
 
   .pools-pool-container {

@@ -5,6 +5,8 @@ import PoolContainer from "./PoolContainer";
 import { useEffect, useState } from "react";
 import EditModal from "../Edit/EditModal";
 
+import './Pools.css';
+
 interface Pool {
     id: string;
     tag: string;

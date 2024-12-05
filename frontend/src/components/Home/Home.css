@@ -159,6 +159,35 @@
   );
 }
 
+.background-sand-to-blue-rl {
+  width: 100%;
+  background: linear-gradient(
+    to bottom left,
+    rgba(215, 190, 165, 0.8),
+    #ffffff 30%,
+    #ffffff 60%,
+    rgba(74, 163, 224, 0.5)
+  );
+}
+
+.background-blue-to-white {
+  width: 100%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(74, 163, 224, 0.5),
+    #ffffff 30%
+  );
+}
+
+.background-sand-to-white {
+  width: 100%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(215, 190, 165, 0.8),
+    #ffffff 40%
+  );
+}
+
 .background-to-blue {
   width: 100%;
   background: linear-gradient(

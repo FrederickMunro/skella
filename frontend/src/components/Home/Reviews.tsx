@@ -16,9 +16,9 @@ const Reviews = () => {
 
     return(
         <div className='reviews'>
-            <ItemContainer>
+            {/* <ItemContainer>
                 <h2 className='reviews-title'>Une expérience inégalée</h2>
-            </ItemContainer>
+            </ItemContainer> */}
             {reviews.map((review, index) => {
                 return <Review key={index} reviewText={review} date={dates[index]}/>
             })}

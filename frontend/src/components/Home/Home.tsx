@@ -21,9 +21,9 @@ const Home = () => {
         <ServiceSection name='Excavations' description='Voir nos projets' link='./excavations' video={videoexcavations} />
       </div>
       <div className='home-section'>
-        <SectionDesc tag='experience-sec' className='background-blue-to-sand'/>
+        <SectionDesc tag='experience-sec' className='background-sand-to-white'/>
       </div>
-      <div className='background-blue-to-sand'>
+      <div className=''>
         <Reviews />
       </div>
     </ContentContainer>
