@@ -77,7 +77,7 @@ const SectionDesc = ({ tag, className }: Props) => {
   }
 
   return(
-    <ItemContainer>
+    <ItemContainer anim='-appear'>
       <EditableComponent items={items} submit={submit}>
         <div className={className}>
           <h1 className='home-section-title'>{pageDetail.title}</h1>

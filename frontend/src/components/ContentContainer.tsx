@@ -6,12 +6,8 @@ interface Props {
 }
 
 const ContentContainer = ({ children }: Props) => {
-    const { ref, inView } = useInView({
-        threshold: 0.1,
-        triggerOnce: true,
-    });
     return(
-        <div ref={ref} className={`content-container inview-container ${inView ? "visible" : "hidden"}`}>
+        <div>
             {children}
         </div>
     )

@@ -20,10 +20,6 @@ interface Props {
 }
 
 const TitleDesc = ({ tag }: Props) => {
-  const { ref, inView } = useInView({
-  threshold: 0.1,
-  triggerOnce: true,
-});
   const apiUrl = import.meta.env.VITE_API_URL as string;
 
   const isAdmin = import.meta.env.VITE_IS_ADMIN === 'true';

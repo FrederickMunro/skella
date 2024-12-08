@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import SoumissionPool from "./SoumissionPool";
+import MenuOption from "./MenuOption";
+import SoumissionColor from "./SoumissionColor";
 
 interface Pool {
   id: string;
@@ -10,26 +12,33 @@ interface Pool {
   sizeDepth: [string, string][];
   image: string;
   model: string;
+  pdf: string;
 }
 
 const Soumission = () => {
-  const tag = 'soumission';
-
   const apiUrl = import.meta.env.VITE_API_URL as string;
-  const isAdmin = import.meta.env.VITE_IS_ADMIN === 'true';
 
   const [pools, setPools] = useState<Pool[]>([]);
-  const [selectedPool, setSelectedPool] = useState<Pool | null>(null)
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [selectedPool, setSelectedPool] = useState<Pool | null>(null);
+  const [isCollapsedPools, setIsCollapsedPools] = useState(true);
+  const [colors, setColors] = useState<Pool[]>([]);
+  const [selectedColor, setSelectedColor] = useState<Pool | null>(null);
+  const [isCollapsedColors, setIsCollapsedColors] = useState(true);
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
+  const toggleCollapsePools = () => {
+    setIsCollapsedPools(!isCollapsedPools);
+  };
+
+  const toggleCollapseColors = () => {
+    setIsCollapsedColors(!isCollapsedColors);
   };
 
   const fetchPools = async () => {
     try {
-        const res = await axios.get<Pool[]>(`${apiUrl}/allpools`); 
-        setPools(res.data);
+        const resPools = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/piscines-altea`); 
+        setPools(resPools.data);
+        const resColors = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/couleurs-piscines`); 
+        setColors(resColors.data);
     } catch (err) {
         
     }
@@ -50,7 +59,7 @@ const Soumission = () => {
     email: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -64,12 +73,28 @@ const Soumission = () => {
     // Add your form submission logic here
   };
 
+  const checkOptions = [
+    'Térrassement',
+    'Pavé-uni',
+    'Services de designer',
+    'Installation de clôture',
+    'Cuisine extérieure',
+    'Pergola',
+    'Plantation',
+    'Fontaine d\'eau',
+    'Terrasse de bois',
+    'Terrasse en composite',
+    'Muret',
+    'Systeme d\'irrigation'
+  ]
+
   return(
     <div className='soumission-container skella-light-blue-background'>
       {/* <TitleDesc tag={tag} /> */}
       <div className="form-container">
+      <h1 className='soumission-title'>Obtenez une soumission</h1>
         <form className="nice-form" onSubmit={handleSubmit}>
-          <h2>Obtenez une soumission</h2>
+          <h2>Entrez vos informations</h2>
 
           {/* Name Section */}
           <div className="form-group">
@@ -171,24 +196,45 @@ const Soumission = () => {
               </div>
             </div>
           </div>
-
-          {/* Submit Button */}
-          <div className="form-group">
-            <button type="submit" className="submit-button">
-              Soumettre
-            </button>
-          </div>
         </form>
       </div>
-      <div className='soumission-choix-box' onClick={() => toggleCollapse()}>
-        <span className={`toggle-icon ${isCollapsed ? 'expanded' : 'collapsed'}`} />
+
+      <div className='soumission-choix-box' onClick={() => toggleCollapsePools()}>
+        {/* <span className={`toggle-icon ${isCollapsed ? 'expanded' : 'collapsed'}`} /> */}
         <h3 className='soumission-choix-piscines'>Choissisez votre modèle</h3>
-        <p className='soumission-choix-choix'>{selectedPool && `Modèle: ${selectedPool.name}`}</p>
+        {/* <p className='soumission-choix-choix'>{selectedPool && `Modèle: ${selectedPool.name}`}</p> */}
       </div>
-      <div  className={`soumission-pools ${isCollapsed ? 'collapsed' : 'expanded'}`}>
+      <div  className={`soumission-pools ${isCollapsedPools ? 'collapsed' : 'expanded'}`}>
         {pools.map((pool, index) => {
           return <SoumissionPool setSelectedPool={setSelectedPool} selectedPool={selectedPool} key={index} pool={pool} />
         })}
+      </div>
+
+      <div className='soumission-choix-box' onClick={() => toggleCollapseColors()}>
+        {/* <span className={`toggle-icon ${isCollapsed ? 'expanded' : 'collapsed'}`} /> */}
+        <h3 className='soumission-choix-piscines'>Choissisez votre couleure</h3>
+        {/* <p className='soumission-choix-choix'>{selectedPool && `Modèle: ${selectedPool.name}`}</p> */}
+      </div>
+      <div  className={`soumission-pools ${isCollapsedColors ? 'collapsed' : 'expanded'}`}>
+        {colors.map((color, index) => {
+          return <SoumissionColor setSelectedPool={setSelectedColor} selectedPool={selectedColor} key={index} color={color} />
+        })}
+      </div>
+
+      <div className="form-container">
+        <h2 className='checkbox-title'>Cochez les services qui vous intéressent</h2>
+        <p className='checkbox-disclaimer'>*Les options cochées sont uniquement pour explorer vos besoins et ne constituent pas une offre officielle.</p>
+        <div className="checkbox-list">
+          {checkOptions.map((option, index) => {
+            return <MenuOption title={option} key={index} />
+          })}
+        </div>
+        {/* Submit Button */}
+        <div className="form-group">
+          <button type="submit" className="submit-button">
+            Soumettre
+          </button>
+        </div>
       </div>
     </div>
   );

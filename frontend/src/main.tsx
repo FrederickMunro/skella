@@ -19,6 +19,7 @@ import Evoa from "./components/Pools/Evoa";
 import Fluvia from "./components/Pools/Fluvia";
 import Collections from "./components/Pools/Collections";
 import Soumission from "./components/Soumission/Soumission";
+import LogoAnimation from "./components/LogoAnimation";
 
 const router = createBrowserRouter([
   {
@@ -154,7 +155,10 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')!).render(
-  <HelmetProvider>
-    <RouterProvider router={router} />
-  </HelmetProvider>
+  <>
+    <LogoAnimation />
+    <HelmetProvider>
+      <RouterProvider router={router} />
+    </HelmetProvider>
+  </>
 )

@@ -5,14 +5,14 @@ import videopiscines from '../../assets/videos/homepage_video.mp4';
 import videoamenagements from '../../assets/videos/amenagements.mp4';
 import videoexcavations from '../../assets/videos/excavations.mp4';
 import SectionDesc from './SectionDesc';
-import ContentContainer from '../ContentContainer';
-import Review from './Review';
 import Reviews from './Reviews';
+import ItemContainer from '../ItemContainer';
+import StatsBox from './StatsBox';
+import pic from '../../assets/images/AQUARINO gris arctique_arctic grey-6.jpg';
 
 const Home = () => {
-  // Use object destructuring, so you don't need to remember the exact order
   return (
-    <ContentContainer>
+    <div>
       <HomeVideo />
       <div className='home-section'>
         <SectionDesc tag='piscines-sec' className='background-sand-to-blue' />
@@ -26,7 +26,13 @@ const Home = () => {
       <div className=''>
         <Reviews />
       </div>
-    </ContentContainer>
+      <ItemContainer>
+        <div className='stats-section'>
+          <img src={pic} className='stat-pic' />
+          <StatsBox />
+        </div>
+      </ItemContainer>
+    </div>
   )
 }
 

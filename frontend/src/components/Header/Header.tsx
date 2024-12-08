@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 
-import CompanyLogo from '../../assets/images/SKELLA shaded.jpg';
+import CompanyLogo from '../../assets/images/SKELLA shaded.png';
 import Menu from './Menu';
 import { useEffect, useState } from 'react';
 

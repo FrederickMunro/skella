@@ -21,22 +21,22 @@ const EditableComponent = ({ items, submit, remove, children }: Props) => {
 
   return(
     <>
-      <div 
-        className={`editable-container ${isAdmin && isHovered ? 'hovered' : ''}`}
-        onMouseEnter={() => isAdmin && setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => isAdmin && setIsModalOpen(true)}
-        style={{ cursor: isAdmin ? 'pointer' : 'default' }}
-      >
-        {
-          isAdmin && isHovered && (
-            <div className="editable-container-edit-overlay">
-              <FaEdit/>
-            </div>
-          )
-        }
-        {children}
-      </div>
+        <div 
+          className={`editable-container ${isAdmin && isHovered ? 'hovered' : ''}`}
+          onMouseEnter={() => isAdmin && setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => isAdmin && setIsModalOpen(true)}
+          style={{ cursor: isAdmin ? 'pointer' : 'default' }}
+        >
+          {
+            isAdmin && isHovered && (
+              <div className="editable-container-edit-overlay">
+                <FaEdit/>
+              </div>
+            )
+          }
+          {children}
+        </div>
       {
         isAdmin && isModalOpen &&
         <EditModal items={items} submit={submit} remove={remove} close={() => setIsModalOpen(false)} />

@@ -4,6 +4,7 @@ import EditableComponent from '../Edit/EditableComponent';
 import { Item } from '../Edit/EditModal';
 import axios from 'axios';
 import { useInView } from "react-intersection-observer";
+import ItemContainer from '../ItemContainer';
 
 interface Props {
   pool: Pool;
@@ -34,11 +35,8 @@ interface newPool {
 }
 
 const PoolContainer = ({ pool, fetchPools }: Props) => {
-  const { ref, inView } = useInView({
-  threshold: 0.1,
-  triggerOnce: true,
-});
 
+  const isAdmin = import.meta.env.VITE_IS_ADMIN === 'true';
   const apiUrl = import.meta.env.VITE_API_URL as string;
 
   const [newPool, setNewPool] = useState<newPool>({
@@ -135,28 +133,27 @@ const PoolContainer = ({ pool, fetchPools }: Props) => {
 
   return (
     <div className='pools-pool-info-container main-color-background'>
-      <div
-        ref={ref}
-        className={`pools-pool-nested-info-container inview-container ${inView ? "visible" : "hidden"}`}
-      >
+      <ItemContainer>
         <EditableComponent items={items} submit={submit} remove={remove}>
-          <img
-            src={pool.image}
-            alt={pool.name}
-            className="pools-pool-image"
-            loading='lazy'
-          />
-          <img 
-            src={pool.model}
-            className='pools-pool-model'
-          />
-          <h2 className='pools-container-title'>{pool.name}</h2>
-          <p className='pools-container-desc'>{pool.description}</p>
-          <a href={pool.pdf} target='_blank'>
-            <button className='pools-pool-detail-button'>Voir plus de details</button>
-          </a>
+          <div className={`pools-pool-nested-info-container`}>
+            <img
+              src={pool.image}
+              alt={pool.name}
+              className="pools-pool-image"
+              loading='lazy'
+            />
+            <img 
+              src={pool.model}
+              className='pools-pool-model'
+            />
+            <h2 className='pools-container-title'>{pool.name}</h2>
+            <p className='pools-container-desc'>{pool.description}</p>
+            <a href={pool.pdf} target='_blank'>
+              <button className='pools-pool-detail-button'>Voir plus de details</button>
+            </a>
+          </div>
         </EditableComponent>
-      </div>
+      </ItemContainer>
     </div>
   )
 }

@@ -8,7 +8,7 @@ interface Pool {
   sizeDepth: [string, string][];
   image: string;
   model: string;
-  
+  pdf: string;
 }
 
 interface Props {

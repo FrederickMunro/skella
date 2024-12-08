@@ -24,6 +24,11 @@
   width: 100%;
 }
 
+.item-container {
+  height: 100%;
+  width: 100%;
+}
+
 /* Hover effect for dimming */
 .editable-container.hovered::before {
   content: '';
@@ -73,7 +78,7 @@
   z-index: 0;
   height: 100%;
   width: 100%;
-  filter: brightness(70%);
+  filter: brightness(60%);
 }
 
 .titledesc-title {
@@ -90,6 +95,63 @@
   color: white;
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
+}
+
+/* Logo Animation Container */
+.logo-animation {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--skella-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: fadeBackground 2.5s ease forwards;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Logo */
+.logo {
+  width: 45%; /* Adjust as needed */
+  animation: logoSequence 2.5s ease forwards;
+}
+
+/* Keyframes for the logo */
+@keyframes logoSequence {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(2);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+    display: hidden;
+    z-index: -10;
+  }
+}
+
+/* Keyframes for the background fade-out */
+@keyframes fadeBackground {
+  0% {
+    background-color: white;
+  }
+  90% {
+    background-color: white;
+  }
+  100% {
+    background-color: transparent;
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 767px) {

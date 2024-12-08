@@ -57,7 +57,7 @@ const Footer = () => {
                     />
                 </div>
             </div>
-            <div className='footer-container-right'>
+            {/* <div className='footer-container-right'>
                 <a href='https://rinoxgroup.com/' target='_blank'>
                     <img src={rinoxIcon}/>
                 </a>
@@ -65,7 +65,7 @@ const Footer = () => {
                     <p>&nbsp;Une division du&nbsp;</p>
                     <p>Groupe Rinox&nbsp;</p>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

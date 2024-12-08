@@ -5,6 +5,7 @@ import './Pools.css';
 import PoolContainer from './PoolContainer';
 import TitleDesc from '../TitleDesc';
 import ContentContainer from '../ContentContainer';
+import ItemContainer from '../ItemContainer';
 
 interface Pool {
     id: string;
@@ -14,6 +15,7 @@ interface Pool {
     sizeDepth: [string,string][];
     image: string;
     model: string;
+    pdf: string;
 }
 
 const Pools = () => {
@@ -42,7 +44,9 @@ const Pools = () => {
             <div className='pools-pool-container'>
                 {pools.map((pool, index) => {
                     return(
-                        <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
+                        <ItemContainer>
+                            <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
+                        </ItemContainer>
                     );
                 })}
             </div>

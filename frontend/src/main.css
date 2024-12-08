@@ -8,8 +8,12 @@
   --skella-blue: blue;
   --skella-grey: grey;
   --skella-white: #eeeeee;
-  --skella-light-blue: #c9def5;
+  --skella-light-blue: #a8cbea;
+  --skella-medium-blue: #003366;
   --skella-dark-blue: #00142d;
+  --skella-light-green: #E9F5E8;
+  --skella-green: green;
+  --skella-dark-green: #2E5E3E;
 }
 
 body {
@@ -19,7 +23,8 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .skella-white-color {
@@ -105,5 +110,33 @@ a {
 
 .visible {
   transform: translateY(0);
+  opacity: 1;
+}
+
+.inview-container-side-left, .inview-container-side-right {
+  transition: transform 0.6s ease-out;
+}
+
+.hidden-side-left {
+  transform: translateX(95%);
+}
+
+.hidden-side-right {
+  transform: translateX(-95%);
+}
+
+.visible-side-left, .visible-side-right {
+  transform: translateX(0);
+}
+
+.inview-container-appear {
+  transition: opacity 1s ease-out;
+}
+
+.hidden-appear {
+  opacity: 0;
+}
+
+.visible-appear {
   opacity: 1;
 }

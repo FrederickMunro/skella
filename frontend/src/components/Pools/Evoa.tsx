@@ -77,6 +77,12 @@ const Evoa = () => {
       value: newRecPool.model,
       setValue: (model: string) => setNewRecPool(prev => ({ ...prev, model }))
     },
+    {
+      label: 'Blueprint',
+      type: 'pdf',
+      value: newRecPool.pdf,
+      setValue: (pdf: string) => setNewCircPool(prev => ({ ...prev, pdf }))
+    },
   ]
 
   const submitRec = async () => {
@@ -85,13 +91,16 @@ const Evoa = () => {
     formData.append('description', newRecPool.description);
     formData.append('tag', tagRec);
     if (newRecPool.sizeDepth) {
-      formData.append('sizedepth', JSON.stringify(newPool.sizeDepth));
+      formData.append('sizedepth', JSON.stringify(newRecPool.sizeDepth));
     }
     if (newRecPool.image) {
       formData.append('image', newRecPool.image);
     }
     if (newRecPool.model) {
-      formData.append('image', newRecPool.image);
+      formData.append('model', newRecPool.model);
+    }
+    if (newRecPool.pdf) {
+      formData.append('pdf', newClaPool.pdf);
     }
 
     try {
@@ -150,6 +159,12 @@ const Evoa = () => {
       value: newCircPool.model,
       setValue: (model: string) => setNewCircPool(prev => ({ ...prev, model }))
     },
+    {
+      label: 'Blueprint',
+      type: 'pdf',
+      value: newCircPool.pdf,
+      setValue: (pdf: string) => setNewCircPool(prev => ({ ...prev, pdf }))
+    },
   ]
 
   const submitCirc = async () => {
@@ -164,7 +179,10 @@ const Evoa = () => {
       formData.append('image', newCircPool.image);
     }
     if (newCircPool.model) {
-      formData.append('image', newCircPool.image);
+      formData.append('model', newCircPool.model);
+    }
+    if (newCircPool.pdf) {
+      formData.append('pdf', newClaPool.pdf);
     }
 
     try {
@@ -223,6 +241,12 @@ const Evoa = () => {
       value: newClaPool.model,
       setValue: (model: string) => setNewClaPool(prev => ({ ...prev, model }))
     },
+    {
+      label: 'Blueprint',
+      type: 'pdf',
+      value: newClaPool.pdf,
+      setValue: (pdf: string) => setNewClaPool(prev => ({ ...prev, pdf }))
+    },
   ]
 
   const submitCla = async () => {
@@ -239,7 +263,10 @@ const Evoa = () => {
       formData.append('image', newClaPool.image);
     }
     if (newClaPool.model) {
-      formData.append('image', newClaPool.image);
+      formData.append('model', newClaPool.model);
+    }
+    if (newClaPool.pdf) {
+      formData.append('pdf', newClaPool.pdf);
     }
 
     try {
@@ -272,65 +299,70 @@ const Evoa = () => {
   return (
     <>
       <ContentContainer>
-          <TitleDesc tag={tag} />
-          <div className='pools-pool-container'>
-              {recPools.map((pool, index) => {
-                  return(
-                      <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
-                  );
-              })}
-          </div>
-          {
-            isAdmin && 
-            <button
-              className='pools-add-button'
-              onClick={() => isAdmin && setIsRecModalOpen(true)}
-            >Add new pool</button>
-          }
-          {
-            isAdmin && isRecModalOpen &&
-            <EditModal items={addPoolRecItems} submit={submitRec} close={() => setIsRecModalOpen(false)} />
-          }
+        <TitleDesc tag={tag} />
       </ContentContainer>
       <ContentContainer>
-          <div className='pools-pool-container'>
-              {circPools.map((pool, index) => {
-                  return(
-                      <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
-                  );
-              })}
-          </div>
-          {
-            isAdmin && 
-            <button
-              className='pools-add-button'
-              onClick={() => isAdmin && setIsCircModalOpen(true)}
-            >Add new pool</button>
-          }
-          {
-            isAdmin && isCircModalOpen &&
-            <EditModal items={addPoolCircItems} submit={submitCirc} close={() => setIsCircModalOpen(false)} />
-          }
+        <div className='pools-pool-container'>
+          <h2 className='model-sec-title'>Modèles Rectangulaires</h2>
+            {recPools.map((pool, index) => {
+                return(
+                    <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
+                );
+            })}
+        </div>
+        {
+          isAdmin && 
+          <button
+            className='pools-add-button'
+            onClick={() => isAdmin && setIsRecModalOpen(true)}
+          >Add new pool</button>
+        }
+        {
+          isAdmin && isRecModalOpen &&
+          <EditModal items={addPoolRecItems} submit={submitRec} close={() => setIsRecModalOpen(false)} />
+        }
       </ContentContainer>
       <ContentContainer>
-          <div className='pools-pool-container'>
-              {claPools.map((pool, index) => {
-                  return(
-                      <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
-                  );
-              })}
-          </div>
-          {
-            isAdmin && 
-            <button
-              className='pools-add-button'
-              onClick={() => isAdmin && setIsClaModalOpen(true)}
-            >Add new pool</button>
-          }
-          {
-            isAdmin && isClaModalOpen &&
-            <EditModal items={addPoolClaItems} submit={submitCla} close={() => setIsClaModalOpen(false)} />
-          }
+        <div className='pools-pool-container'>
+          <h2 className='model-sec-title'>Modèles Libres</h2>
+            {circPools.map((pool, index) => {
+                return(
+                    <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
+                );
+            })}
+        </div>
+        {
+          isAdmin && 
+          <button
+            className='pools-add-button'
+            onClick={() => isAdmin && setIsCircModalOpen(true)}
+          >Add new pool</button>
+        }
+        {
+          isAdmin && isCircModalOpen &&
+          <EditModal items={addPoolCircItems} submit={submitCirc} close={() => setIsCircModalOpen(false)} />
+        }
+      </ContentContainer>
+      <ContentContainer>
+        <div className='pools-pool-container'>
+          <h2 className='model-sec-title'>Modèles Classiques</h2>
+            {claPools.map((pool, index) => {
+                return(
+                    <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
+                );
+            })}
+        </div>
+        {
+          isAdmin && 
+          <button
+            className='pools-add-button'
+            onClick={() => isAdmin && setIsClaModalOpen(true)}
+          >Add new pool</button>
+        }
+        {
+          isAdmin && isClaModalOpen &&
+          <EditModal items={addPoolClaItems} submit={submitCla} close={() => setIsClaModalOpen(false)} />
+        }
       </ContentContainer>
     </>
   )

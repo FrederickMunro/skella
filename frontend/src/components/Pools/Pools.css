@@ -39,6 +39,7 @@
   position: absolute;
   left: 0;
   width: 100%;
+  margin-top: -0.1rem;
   height: 0.3rem; /* Thickness of the bar */
   background: #F4A460;
   cursor: ns-resize;
@@ -175,7 +176,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     flex-grow: 1;
     background-color: var(--skella-light-blue);
   }
@@ -185,8 +186,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--skella-dark-blue);
-    width: 90%;
+    /* background-color: var(--skella-dark-blue); */
+    background: linear-gradient(45deg, var(--skella-medium-blue) 20%, var(--skella-dark-blue) 100%);
+    width: 90vw;
     margin: 3rem 0;
     border-radius: 1rem;
     border: 1px solid var(--skella-dark-blue);
@@ -208,8 +210,9 @@
     font-size: 35px;
     margin: 5vw 5rem 2rem 5rem;
     align-self: flex-start;
-    font-style: italic;
     color: var(--skella-white);
+    letter-spacing: 0.1rem;
+    font-family: 'Roboto', sans-serif;
   }
 
   .pools-container-desc {
@@ -217,6 +220,7 @@
     align-self: flex-start;
     margin: 0 5rem 5rem 5rem;
     color: var(--skella-white);
+    font-family: 'Roboto', sans-serif;
   }
 
   .pools-container-sizes {
@@ -347,9 +351,20 @@
   .pools-pool-model {
     height: 25vw;
     position: absolute;
-    top: 42vw;
+    top: 50vw;
     align-self: flex-end;
     margin-right: 2rem;
+  }
+
+  .model-sec-title {
+    font-size: 3rem;
+    margin: 0;
+    width: 100%;
+    color: var(--skella-dark-blue);
+    background-color: var(--skella-light-blue);
+    font-family: 'Roboto', sans-serif;
+    padding: 2rem 2rem 1rem 2rem;
+    font-weight: bold;
   }
 
   .pools-container-lists {
@@ -501,11 +516,13 @@
     margin: 0 0 3rem 0;
     padding: 1rem 4rem;
     border-radius: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
+    letter-spacing: 0.05rem;
     border: none;
     background-color: var(--skella-white);
     color: var(--skella-dark-blue);
+    font-family: 'Roboto', sans-serif;
   }
 
   .pools-pool-detail-button:hover {
