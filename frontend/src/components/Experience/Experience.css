@@ -1,0 +1,117 @@
+.experience-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* gap: 5rem; */
+    background: var(--skella-light-blue);
+    padding-bottom: 5rem;
+}
+
+.experience-outer-box {
+    box-shadow: 0 0 2rem var(--skella-dark-blue);
+}
+
+.experience-box {
+    padding: 2rem 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background: var(--skella-light-blue);
+    background: linear-gradient(45deg, var(--skella-medium-blue) 20%, var(--skella-dark-blue) 100%);
+}
+
+.experience-box-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure spacing between images */
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+    position: relative;
+}
+
+.experience-box-image-container.moved {
+    transform: translateX(-90vw);
+}
+
+.experience-box-image {
+    width: 80vw;
+    display: flex;
+    border-radius: 1rem;
+}
+
+.experience-box-image.before {
+    margin-left: 10vw;
+}
+
+.experience-box-image.after {
+    margin-right: 10vw;
+}
+
+.experience-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 10vw;
+    max-width: 10vw;
+    transition: margin 0.5s ease-in-out;
+}
+
+.experience-arrow.left {
+    margin: 0 0.5rem 0 -0.5rem;
+}
+
+.experience-arrow.right {
+    margin: 0 -0.5rem 0 0.5rem;
+}
+
+
+.experience-arrow-tip {
+    height: 2rem;
+    width: 2rem;
+    border-top: 5px solid var(--skella-light-blue);
+    border-right: 5px solid var(--skella-light-blue);
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Arrow direction logic */
+.experience-arrow-tip.left {
+    transform: rotate(45deg); /* Default points left */
+}
+
+/* Arrow direction logic */
+.experience-arrow-tip.right {
+    transform: rotate(-135deg);
+}
+
+.experience-box-desc {
+    font-size: 1.8rem;
+    color: var(--skella-light-blue);
+    margin: 1rem 10vw 1rem 10vw;
+    line-height: 2.5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.avant-apres-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0 2rem 0;
+    gap: 1rem;
+}
+
+.aabutton {
+    background: var(--skella-light-blue);
+    color: var(--skella-dark-blue);
+    border: 0.1rem solid var(--skella-dark-blue);
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem;
+    filter: brightness(50%);
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+.aabutton.moved {
+    filter: brightness(100%);
+}

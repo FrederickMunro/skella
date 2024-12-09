@@ -37,10 +37,12 @@ const SoumissionColor = ({ color, selectedPool, setSelectedPool }: Props) => {
       />
       <label className={`checkbox-soumission ${selectedPool === color ? 'checkbox-soumission-check' : ''}`}>✔</label>
       <h3 className='soumission-pool-title'>{color.name}</h3>
+      <p className='soumission-color-type top'>Sans eau</p>
       <div className='soumission-color-container'>
-        <img className='soumission-color-image skella-dark-blue-background' src={color.image} draggable='false'/>
-        <img className='soumission-color-image skella-dark-blue-background' src={color.model} draggable='false'/>
+        <img className='soumission-color-image top skella-dark-blue-background' src={color.image} draggable='false'/>
+        <img className='soumission-color-image bot skella-dark-blue-background' src={color.model} draggable='false'/>
       </div>
+      <p className='soumission-color-type bot'>Avec eau</p>
     </div>
   );
 }

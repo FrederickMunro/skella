@@ -160,6 +160,32 @@
   font-size: 1.5rem;
 }
 
+.pool-subtitle-container {
+  height: 15rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pool-subtitle-title {
+  color: white;
+  z-index: 1;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.pool-subtitle-image {
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  width: 300%;
+  z-index: -1;
+  height: 15rem;
+  filter: brightness(40%);
+}
+
 @media only screen and (max-width: 767px) {
   .pools-pool-container {
     display: flex;

@@ -149,7 +149,7 @@
 }
 
 .background-sand-to-blue {
-  width: 100%;
+  width: 100vw;
   background: linear-gradient(
     to bottom right,
     rgba(215, 190, 165, 0.8),

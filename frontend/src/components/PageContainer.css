@@ -107,7 +107,7 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
-  animation: fadeBackground 2.5s ease forwards;
+  animation: fadeBackground 1.5s ease forwards;
   user-select: none;
   overflow: hidden;
 }
@@ -115,7 +115,7 @@
 /* Logo */
 .logo {
   width: 45%; /* Adjust as needed */
-  animation: logoSequence 2.5s ease forwards;
+  animation: logoSequence 1.5s ease forwards;
 }
 
 /* Keyframes for the logo */
@@ -128,7 +128,7 @@
     opacity: 1;
     transform: scale(2);
   }
-  80% {
+  60% {
     opacity: 1;
     transform: scale(2);
   }
@@ -145,7 +145,7 @@
   0% {
     background-color: white;
   }
-  90% {
+  95% {
     background-color: white;
   }
   100% {

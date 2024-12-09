@@ -201,7 +201,7 @@ const Soumission = () => {
 
       <div className='soumission-choix-box' onClick={() => toggleCollapsePools()}>
         {/* <span className={`toggle-icon ${isCollapsed ? 'expanded' : 'collapsed'}`} /> */}
-        <h3 className='soumission-choix-piscines'>Choissisez votre modèle</h3>
+        <h3 className='soumission-choix-piscines'>Choisir un modèle</h3>
         {/* <p className='soumission-choix-choix'>{selectedPool && `Modèle: ${selectedPool.name}`}</p> */}
       </div>
       <div  className={`soumission-pools ${isCollapsedPools ? 'collapsed' : 'expanded'}`}>
@@ -212,7 +212,7 @@ const Soumission = () => {
 
       <div className='soumission-choix-box' onClick={() => toggleCollapseColors()}>
         {/* <span className={`toggle-icon ${isCollapsed ? 'expanded' : 'collapsed'}`} /> */}
-        <h3 className='soumission-choix-piscines'>Choissisez votre couleure</h3>
+        <h3 className='soumission-choix-piscines'>Choisir une couleure</h3>
         {/* <p className='soumission-choix-choix'>{selectedPool && `Modèle: ${selectedPool.name}`}</p> */}
       </div>
       <div  className={`soumission-pools ${isCollapsedColors ? 'collapsed' : 'expanded'}`}>

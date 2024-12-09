@@ -4,6 +4,7 @@ import TitleDesc from "../TitleDesc";
 import PoolContainer from "./PoolContainer";
 import { useEffect, useState } from "react";
 import EditModal from "../Edit/EditModal";
+import PoolSubtitle from "./PoolSubtitle";
 
 interface Pool {
     id: string;
@@ -287,6 +288,7 @@ const Evoa = () => {
           setCircPools(circRes.data);
           const claRes = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/${tagCla}`); 
           setClaPools(claRes.data);
+          const recTitleRes = await axios.get<Pool[]>(`${apiUrl}/poolsbytag/${tagRec}`);
       } catch (err) {
           
       }
@@ -303,7 +305,7 @@ const Evoa = () => {
       </ContentContainer>
       <ContentContainer>
         <div className='pools-pool-container'>
-          <h2 className='model-sec-title'>Modèles Rectangulaires</h2>
+          <PoolSubtitle tag='piscines-evoa-rec' />
             {recPools.map((pool, index) => {
                 return(
                     <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
@@ -324,7 +326,7 @@ const Evoa = () => {
       </ContentContainer>
       <ContentContainer>
         <div className='pools-pool-container'>
-          <h2 className='model-sec-title'>Modèles Libres</h2>
+        <PoolSubtitle tag='piscines-evoa-lib' />
             {circPools.map((pool, index) => {
                 return(
                     <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
@@ -345,7 +347,7 @@ const Evoa = () => {
       </ContentContainer>
       <ContentContainer>
         <div className='pools-pool-container'>
-          <h2 className='model-sec-title'>Modèles Classiques</h2>
+        <PoolSubtitle tag='piscines-evoa-cla' />
             {claPools.map((pool, index) => {
                 return(
                     <PoolContainer key={index} pool={pool} fetchPools={fetchPools}/>
