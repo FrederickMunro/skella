@@ -20,12 +20,14 @@ import Fluvia from "./components/Pools/Fluvia";
 import Collections from "./components/Pools/Collections";
 import Soumission from "./components/Soumission/Soumission";
 import LogoAnimation from "./components/LogoAnimation";
+import BackToTop from "./components/BackToTop";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Home />
         <Footer />
@@ -36,6 +38,7 @@ const router = createBrowserRouter([
     path: '/portfolio',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Portfolio />
         <Footer />
@@ -46,6 +49,7 @@ const router = createBrowserRouter([
     path: '/piscines',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Collections />
         <Footer />
@@ -56,6 +60,7 @@ const router = createBrowserRouter([
     path: '/amenagements',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Amenagement />
         <Footer />
@@ -66,6 +71,7 @@ const router = createBrowserRouter([
     path: '/excavations',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Excavation />
         <Footer />
@@ -76,6 +82,7 @@ const router = createBrowserRouter([
     path: '/experience',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Experience />
         <Footer />
@@ -86,6 +93,7 @@ const router = createBrowserRouter([
     path: '/blog',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Blog />
         <Footer />
@@ -96,6 +104,7 @@ const router = createBrowserRouter([
     path: '/contact',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Contact />
         <Footer />
@@ -106,6 +115,7 @@ const router = createBrowserRouter([
     path: '/soumission',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Soumission />
         <Footer />
@@ -116,6 +126,7 @@ const router = createBrowserRouter([
     path: '/collections',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Collections />
         <Footer />
@@ -126,6 +137,7 @@ const router = createBrowserRouter([
     path: '/altea',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Altea />
         <Footer />
@@ -136,6 +148,7 @@ const router = createBrowserRouter([
     path: '/evoa',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Evoa />
         <Footer />
@@ -146,6 +159,7 @@ const router = createBrowserRouter([
     path: '/fluvia',
     element: (
       <>
+        <BackToTop />
         <Header />
         <Fluvia />
         <Footer />

@@ -28,7 +28,7 @@ const Stats = ({ fetch, stat, tag }: Props) => {
   useEffect(() => {
     if(inView) {
       let animationFrame: number;
-      const duration = 2000; // total animation time in ms
+      const duration = 1000; // total animation time in ms
       const startTime = performance.now();
 
       // Cubic ease-out easing function

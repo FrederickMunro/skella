@@ -1,15 +1,13 @@
 .experience-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    /* gap: 5rem; */
     background: var(--skella-light-blue);
-    padding-bottom: 5rem;
 }
 
 .experience-outer-box {
     box-shadow: 0 0 2rem var(--skella-dark-blue);
+    margin-bottom: 3rem;
+    padding: 0;
 }
 
 .experience-box {
@@ -17,8 +15,7 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
-    background: var(--skella-light-blue);
-    background: linear-gradient(45deg, var(--skella-medium-blue) 20%, var(--skella-dark-blue) 100%);
+    background: linear-gradient(45deg, var(--skella-medium-blue) 10%, var(--skella-dark-blue) 100%);
 }
 
 .experience-box-image-container {
@@ -31,21 +28,22 @@
 }
 
 .experience-box-image-container.moved {
-    transform: translateX(-90vw);
+    transform: translateX(calc(-90vw - 2px));
 }
 
 .experience-box-image {
-    width: 80vw;
+    width: calc(80vw - 1px);
     display: flex;
-    border-radius: 1rem;
+    border-radius: 0rem;
+    border: 1px solid white;
 }
 
 .experience-box-image.before {
-    margin-left: 10vw;
+    margin-left: calc(10vw + 1px);
 }
 
 .experience-box-image.after {
-    margin-right: 10vw;
+    margin-right: calc(10vw - 1px);
 }
 
 .experience-arrow {
@@ -70,8 +68,8 @@
 .experience-arrow-tip {
     height: 2rem;
     width: 2rem;
-    border-top: 5px solid var(--skella-light-blue);
-    border-right: 5px solid var(--skella-light-blue);
+    border-top: 5px solid var(--skella-white);
+    border-right: 5px solid var(--skella-white);
     transition: transform 0.5s ease-in-out;
 }
 
@@ -87,7 +85,7 @@
 
 .experience-box-desc {
     font-size: 1.8rem;
-    color: var(--skella-light-blue);
+    color: var(--skella-white);
     margin: 1rem 10vw 1rem 10vw;
     line-height: 2.5rem;
     font-family: 'Roboto', sans-serif;
@@ -102,7 +100,7 @@
 }
 
 .aabutton {
-    background: var(--skella-light-blue);
+    background: var(--skella-white);
     color: var(--skella-dark-blue);
     border: 0.1rem solid var(--skella-dark-blue);
     border-radius: 0.5rem;
@@ -110,6 +108,8 @@
     filter: brightness(50%);
     font-weight: bold;
     letter-spacing: 0.1rem;
+    font-size: 1.5rem;
+    transition: filter 0.5s ease;
 }
 
 .aabutton.moved {

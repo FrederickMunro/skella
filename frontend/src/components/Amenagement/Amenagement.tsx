@@ -77,7 +77,7 @@ const Amenagement = () => {
   return(
     <div className='amenagement-container'>
       <TitleDesc tag={tag}/>
-      <h2 className='amenagement-subtitle'>Notre équipe d'aménagement paysager vous offre une gamme complète de services pour transformer votre espace extérieur en un havre de paix personnalisé</h2>
+      <h2 className='amenagement-subtitle'>Réalisez l’extérieur de vos rêves avec nos services d’aménagement paysager haut de gamme</h2>
       {services.map((service, index) => {
         return <AmenagementBox name={service.name} desc={service.desc} icon={service.icon} anim={index%2==0 ? '-side-left' : '-side-right'} key={index} />
       })}

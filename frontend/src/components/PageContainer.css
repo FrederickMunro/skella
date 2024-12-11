@@ -1,3 +1,36 @@
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  border-radius: 1rem;
+  opacity: 0;
+  visibility: hidden; /* Element is hidden initially */
+  transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease; /* Smooth transition for opacity and visibility */
+  transform: translate(2rem, 2rem);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible; /* Make element visible */
+  transform: translate(0, 0);
+}
+
+.back-to-top-arrow {
+  border-top: 0.3rem solid white;
+  border-left: 0.3rem solid white;
+  margin-top: 0.8rem;
+  height: 1rem;
+  width: 1rem;
+  transform: rotate(45deg);
+}
+
 .page-container {
   width: 100vw;
   flex-grow: 1;

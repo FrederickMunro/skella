@@ -20,7 +20,7 @@ const AmenagementBox = ({ name, desc, icon, anim }: Props) => {
     <ItemContainer anim='-appear'>
       <div className='amenagement-item'>
         <div className='amenagement-seperator' />
-        <ItemContainer anim={anim} threshhold={0.05}>
+        <ItemContainer anim={anim} threshhold={0.025}>
           <div onClick={() => handleClicked()} className='amenagement-info'>
             <div className='amenagement-icon'>{icon}</div>
             <h2 className={`amenagement-title ${isClicked && 'visible'}`}>{name}</h2>

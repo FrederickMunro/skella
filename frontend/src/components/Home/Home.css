@@ -266,6 +266,7 @@
   flex-direction: column;
   align-items: center;
   padding: 5rem 0;
+  overflow: hidden;
 }
 
 .stat-number-container {
@@ -304,24 +305,15 @@
   overflow: hidden;
 }
 
-.stats-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  pointer-events: none;
-}
-
 .stat-pic {
   height: 20rem;
   object-fit: cover;
   object-position: center;
   position: absolute;
-  width: 300%;
+  width: 100vw;
   z-index: -1;
+  overflow: hidden;
+  filteR: brightness(25%);
 }
 
 @media only screen and (max-width: 1024px) {

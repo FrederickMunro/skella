@@ -4,6 +4,7 @@ import EditableComponent from "../Edit/EditableComponent";
 import { Item } from "../Edit/EditModal";
 
 import './Experience.css';
+import ItemContainer from "../ItemContainer";
 
 interface Props {
     experience: Pool;
@@ -104,6 +105,7 @@ const ExperienceBox = ({ experience, fetchExperiences }: Props) => {
     const [moved, setMoved] = useState<boolean>(false);
 
     return(
+      <ItemContainer threshhold={0.05}>
         <div className='experience-outer-box'>
             <EditableComponent items={items} submit={submit} remove={remove}>
                 <div className='experience-box'>
@@ -125,6 +127,7 @@ const ExperienceBox = ({ experience, fetchExperiences }: Props) => {
                 </div>
             </EditableComponent>
         </div>
+      </ItemContainer>
     )
 }
 
