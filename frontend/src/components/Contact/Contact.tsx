@@ -1,5 +1,5 @@
 import TitleDesc from "../TitleDesc";
-import { InlineWidget } from 'react-calendly';
+import { PopupButton  } from 'react-calendly';
 
 import './Contact.css';
 import { SocialIcon } from "react-social-icons";
@@ -61,6 +61,7 @@ const Contact = () => {
       </div>
 
       <div className='header-container-contact'>
+        <img className='header-container-contact-img' src={water} />
         <h2 className='contact-header-h2'>Visitez nos reseaux sociaux</h2>
         <div className='contact-socials-c'>
           <SocialIcon
@@ -88,12 +89,18 @@ const Contact = () => {
             rel="noopener noreferrer"
           />
         </div>
-        <img className='header-container-contact-img' src={water} />
       </div>
       
+      <h3 className='contact-rdv-title'>Vous voulez en apprendre davantage?</h3>
       <div className='calendly-container'>
-        <InlineWidget
-          styles={{ height: '84rem' }}
+        <PopupButton
+          styles={{
+            fontSize: '2rem',
+            color: 'white',
+            backgroundColor: ''
+          }}
+          rootElement={document.getElementById("root")!}
+          text="Prenez un rendez-vous"
           url={`https://calendly.com/munro-development/rencontre-30-minutes?hide_landing_page_details=1&hide_gdpr_banner=1?locale=fr`}
         />
       </div>

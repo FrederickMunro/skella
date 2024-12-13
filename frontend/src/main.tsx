@@ -21,6 +21,7 @@ import Collections from "./components/Pools/Collections";
 import Soumission from "./components/Soumission/Soumission";
 import LogoAnimation from "./components/LogoAnimation";
 import BackToTop from "./components/BackToTop";
+import Promotions from "./components/Promotion/Promotions";
 
 const router = createBrowserRouter([
   {
@@ -162,6 +163,17 @@ const router = createBrowserRouter([
         <BackToTop />
         <Header />
         <Fluvia />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: '/promotions',
+    element: (
+      <>
+        <BackToTop />
+        <Header />
+        <Promotions />
         <Footer />
       </>
     )

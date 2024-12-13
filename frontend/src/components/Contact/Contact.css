@@ -2,6 +2,9 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: var(--skella-white);
+  z-index: -2;
 }
 
 .contact-container-top {
@@ -14,8 +17,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 83rem;
   padding: 0;
+  overflow: hidden;
+  width: 30rem;
+  margin-bottom: 4rem;
+}
+
+.calendly-container > button {
+  font-size: 3rem;
+  background-color: var(--skella-medium-blue);
+  color: var(--skella-white);
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  letter-spacing: 0.1rem;
+}
+
+.contact-rdv-title {
+  font-size: 3rem;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  margin: 6rem 2rem 4rem 2rem;
 }
 
 .contact-header-h1 {
@@ -75,7 +97,7 @@
 .contact-icon {
   height: 4rem;
   width: 4rem;
-  color: white;
+  color: var(--skella-white);
 }
 
 .contact-div {
@@ -127,7 +149,7 @@
   position: absolute;
   width: 100vw;
   height: 30rem;
-  z-index: -2;
+  z-index: -1;
   filter: brightness(95%);
 }
 

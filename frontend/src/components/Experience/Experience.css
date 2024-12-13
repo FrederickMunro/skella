@@ -6,7 +6,7 @@
 
 .experience-outer-box {
     box-shadow: 0 0 2rem var(--skella-dark-blue);
-    margin-bottom: 3rem;
+    margin: 0;
     padding: 0;
 }
 
@@ -16,6 +16,12 @@
     display: flex;
     flex-direction: column;
     background: linear-gradient(45deg, var(--skella-medium-blue) 10%, var(--skella-dark-blue) 100%);
+}
+
+.avant-apres-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .experience-box-image-container {
@@ -104,14 +110,60 @@
     color: var(--skella-dark-blue);
     border: 0.1rem solid var(--skella-dark-blue);
     border-radius: 0.5rem;
-    padding: 0.4rem 1rem;
+    padding: 0.3rem 0.9rem;
     filter: brightness(50%);
     font-weight: bold;
     letter-spacing: 0.1rem;
-    font-size: 1.5rem;
-    transition: filter 0.5s ease;
+    font-size: 1.4rem;
+    transition: filter 0.5s ease, padding 0.5s ease, font-size 0.5s;
 }
 
 .aabutton.moved {
     filter: brightness(100%);
+    padding: 0.4rem 1rem;
+    font-size: 1.5rem;
+}
+
+.galery {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    background-color: var(--skella-medium-blue);
+}
+
+.galery-item {
+    width: 90%;
+    margin: 0 auto;
+    border: 0.2rem solid var(--skella-white);
+    border-radius: 0.2rem;
+}
+
+.galery-image {
+    width: 100%;
+    position: relative;
+    border-radius: 0.2rem;
+}
+
+.galery-text {
+    margin: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(255, 255, 255, 0.8);
+    color: black;
+    height: 100%;
+    width: calc(100% - 3rem);
+    z-index: 2;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 0 3rem;
+}
+
+.galery-text.clicked {
+    opacity: 1;
 }

@@ -150,6 +150,7 @@
 
 .background-sand-to-blue {
   width: 100vw;
+  z-index: 1;
   background: linear-gradient(
     to bottom right,
     rgba(215, 190, 165, 0.8),

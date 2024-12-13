@@ -6,6 +6,7 @@ import EditModal from "../Edit/EditModal";
 import ExperienceBox from "./ExperienceBox";
 import ServiceSection from "../Home/ServiceSection";
 import SectionDesc from "../Home/SectionDesc";
+import Galery from "./Galery";
 
 interface Pool {
   id: string;
@@ -107,21 +108,24 @@ const Experience = () => {
     <div className='experience-container'>
       <TitleDesc tag={tag}/>
       <SectionDesc tag={`${tag}-sec`} className="background-sand-to-blue" />
-      {pools.map((experience, index) => {
-        console.log(index);
-        return <ExperienceBox experience={experience} fetchExperiences={fetchPools} key={index} />
-      })}
-      {
-        isAdmin && 
-        <button
-          className='pools-add-button'
-          onClick={() => isAdmin && setIsModalOpen(true)}
-        >Add new pool</button>
-      }
+      <div className='avant-apres-cont'>
+        {pools.map((experience, index) => {
+          console.log(index);
+          return <ExperienceBox experience={experience} fetchExperiences={fetchPools} key={index} />
+        })}
+        {
+          isAdmin && 
+          <button
+            className='pools-add-button'
+            onClick={() => isAdmin && setIsModalOpen(true)}
+          >Add new pool</button>
+        }
+      </div>
       {
         isAdmin && isModalOpen &&
         <EditModal items={addPoolItems} submit={submit} close={() => setIsModalOpen(false)} />
       }
+      <Galery />
     </div>
   )
 }

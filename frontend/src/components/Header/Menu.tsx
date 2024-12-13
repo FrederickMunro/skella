@@ -53,6 +53,11 @@ const Menu = ({ menustate, menuclick}: Props) => {
       items: null
     },
     {
+      title: 'Promotions',
+      url: '/promotions',
+      items: null
+    },
+    {
       title: 'Soumission',
       url: '/soumission',
       items: null

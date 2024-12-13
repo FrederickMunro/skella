@@ -1,6 +1,6 @@
 /* Blog Post Container */
 .blog-post {
-  width: 80%;
+  width: 90%;
   margin: 3rem auto;
   background-color: var(--skella-white);
   border-radius: 0.2rem;
