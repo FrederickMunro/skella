@@ -91,7 +91,7 @@ const Contact = () => {
         </div>
       </div>
       
-      <h3 className='contact-rdv-title'>Vous voulez en apprendre davantage?</h3>
+      {/* <h3 className='contact-rdv-title'>Vous voulez en apprendre davantage?</h3>
       <div className='calendly-container'>
         <PopupButton
           styles={{
@@ -101,11 +101,12 @@ const Contact = () => {
           }}
           rootElement={document.getElementById("root")!}
           text="Prenez un rendez-vous"
-          url={`https://calendly.com/munro-development/rencontre-30-minutes?hide_landing_page_details=1&hide_gdpr_banner=1?locale=fr`}
+          url={`https://calendly.com/munro-development?hide_landing_page_details=1&hide_gdpr_banner=1?locale=fr`}
         />
-      </div>
+      </div> */}
     </div>
   )
 }
+// C.P. 54, Place Chambly, Quebec, J3L 4B1
 
 export default Contact;
